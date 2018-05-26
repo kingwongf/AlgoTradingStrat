@@ -1,4 +1,7 @@
-# Ongoing work of King Wong and Ryan Mclaughlin 
+# Ongoing work of King Wong and Ryan Mclaughlin
+
+## this is to test/ justify using the first difference of the prior transition probabilities
+# to forecast an imminent structural break in the time series
 
 import numpy as np
 from hmmlearn.hmm import GaussianHMM
@@ -8,16 +11,28 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-fx_data = pd.read_csv("hmm_test_data_set.csv", header=0)
-dates = np.array(fx_data['Date_AAPL'])
+## simple DGP of Gaussian process
 
-ratio = np.array(fx_data['Close_AAPL'] / fx_data['Close_GOOG'])
-ratio = ratio[np.logical_not(np.isnan(ratio))]
+dgp_mu0 = 0.1
+dgp_mu1 = 0.9
+
+dgp_std0 = 0.05
+dgp_std1 = 0.09
+
+t0 = np.random.random_integers(1000)
+t1 = np.random.random_integers(1000)
+t2 = np.random.random_integers(1000)
+
+
+z0 = dgp_mu0 + dgp_std0*np.random.rand(t0)
+z1 = dgp_mu1 + dgp_std1*np.random.rand(t1)
+z2 = dgp_mu0 + dgp_std0*np.random.rand(t0)
+
+z = np.concatenate((z0,z1,z2))
 
 # reshape_ratio = ratio.reshape(1, -1)
-full_reshape_ratio = np.array([ratio]).T
-dates = np.arange(0, len(full_reshape_ratio))
-
+z = np.array([z]).T
+dates = np.arange(0, len(z))
 
 mu0_list =[]
 mu1_list =[]
@@ -30,7 +45,6 @@ P10_list = []
 P11_list = []
 
 
-orderbook = []
 
 def hmm_fit(reshape_ratio):
     print("fitting to HMM and decoding ...", end="")
@@ -79,10 +93,10 @@ def execution(curren_mu, current_sd, timestamp):
         orderbook.append('no trade')
 
 
-for t in range(0,len(dates)-30-1):
+for t in range(0,len(dates)-100-1):
 
 
-    mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(full_reshape_ratio[t:t+30])
+    mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(z[t:t+100])
     hold = [mu0, mu1, var0, var1, P00, P01, P10, P11]
 
     # print(mu0, mu1)
@@ -99,7 +113,7 @@ for t in range(0,len(dates)-30-1):
 
     timestamp = t + 30
 
-    current_ratio = full_reshape_ratio[timestamp]
+    current_ratio = z[timestamp]
 
 
 
@@ -124,18 +138,13 @@ for t in range(0,len(dates)-30-1):
         current_sd = np.sqrt(var1)
         current_mu = mu1
 
+    # execution(current_mu, current_sd, timestamp)
 
-
-    execution(current_mu, current_sd, timestamp)
-
-
-for item in orderbook:
-    print(item)
 
 plot_time = range(len(np.diff(P00_list)))
 
 
-plt.plot(dates, full_reshape_ratio )
+plt.plot(dates, z)
 plt.show()
 plt.plot(plot_time, np.diff(P00_list), plot_time, np.diff(P01_list), plot_time, np.diff(P10_list), plot_time, np.diff(P11_list))
 plt.show()
