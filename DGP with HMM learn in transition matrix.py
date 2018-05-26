@@ -1,6 +1,6 @@
 # Ongoing work of King Wong and Ryan Mclaughlin
 
-## this is to test/ justify using the first difference of the prior transition probabilities
+## this is to test/ justify using the first difference of the prior probabilities
 # to forecast an imminent structural break in the time series
 
 import numpy as np
