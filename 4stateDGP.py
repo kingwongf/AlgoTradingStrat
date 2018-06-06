@@ -7,7 +7,7 @@ import numpy as np
 from hmmlearn.hmm import GaussianHMM
 import matplotlib
 import pandas as pd
-
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from mpl_toolkits.mplot3d import Axes3D
@@ -28,7 +28,7 @@ dgp_std3 = 0.04
 
 
 
-t = np.random.random_integers(0,10000,7)
+t = np.random.random_integers(0,1000,7)
 
 z0 = dgp_mu0 + dgp_std0*np.random.rand(t[0])
 z1 = dgp_mu1 + dgp_std1*np.random.rand(t[1])
@@ -98,7 +98,7 @@ def execution(curren_mu, current_sd, timestamp):
         orderbook.append('no trade')
 
 
-for t in range(0,len(dates)-1000-1):
+for t in range(0,len(dates)-10-1):
 
 
     mu0, mu1, var0, var1, P = hmm_fit(z[t:t+100])
@@ -115,7 +115,7 @@ for t in range(0,len(dates)-1000-1):
 
     timestamp = t + 30
 
-    current_ratio = z[timestamp]
+
 
 
     # execution(current_mu, current_sd, timestamp)
@@ -123,13 +123,15 @@ for t in range(0,len(dates)-1000-1):
 
 plot_time = range(len(np.diff(P_list,axis=0)))
 
-x3D, y3D, z3D = np.diff(P_list, axis=0)
+print(np.diff(P_list, axis=0).shape)
+
+x3D, y3D, z3D = np.diff(P_list, axis=0).nonzero()
 
 
-plt.subplot(2,1,1)
 plt.plot(dates, z)
-plt.subplot(2,1,2)
-Axes3D.plot(x3D,y3D,z3D)
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+ax.plot_trisurf(x3D,y3D,z3D, cmap = cm.jet)
 plt.show()
 
 
