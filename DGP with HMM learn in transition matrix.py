@@ -14,21 +14,22 @@ import matplotlib.cm as cm
 ## simple DGP of Gaussian process
 
 dgp_mu0 = 0.1
-dgp_mu1 = 0.9
+dgp_mu1 = 0.3
 
 dgp_std0 = 0.05
-dgp_std1 = 0.09
+dgp_std1 = 0.04
 
-t0 = np.random.random_integers(1000)
-t1 = np.random.random_integers(1000)
-t2 = np.random.random_integers(1000)
+t = np.random.random_integers(0,10000,7)
 
+z0 = dgp_mu0 + dgp_std0*np.random.rand(t[0])
+z1 = dgp_mu1 + dgp_std1*np.random.rand(t[1])
+z2 = dgp_mu0 + dgp_std0*np.random.rand(t[2])
+z3 = dgp_mu1 + dgp_std1*np.random.rand(t[3])
+z4 = dgp_mu0 + dgp_std0*np.random.rand(t[4])
+z5 = dgp_mu1 + dgp_std1*np.random.rand(t[5])
+z6 = dgp_mu0 + dgp_std0*np.random.rand(t[6])
 
-z0 = dgp_mu0 + dgp_std0*np.random.rand(t0)
-z1 = dgp_mu1 + dgp_std1*np.random.rand(t1)
-z2 = dgp_mu0 + dgp_std0*np.random.rand(t0)
-
-z = np.concatenate((z0,z1,z2))
+z = np.concatenate((z0,z1,z2,z3,z4,z5,z6))
 
 # reshape_ratio = ratio.reshape(1, -1)
 z = np.array([z]).T
@@ -93,7 +94,7 @@ def execution(curren_mu, current_sd, timestamp):
         orderbook.append('no trade')
 
 
-for t in range(0,len(dates)-100-1):
+for t in range(0,len(dates)-1000-1):
 
 
     mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(z[t:t+100])
@@ -144,8 +145,10 @@ for t in range(0,len(dates)-100-1):
 plot_time = range(len(np.diff(P00_list)))
 
 
+
+plt.subplot(2,1,1)
 plt.plot(dates, z)
-plt.show()
+plt.subplot(2,1,2)
 plt.plot(plot_time, np.diff(P00_list), plot_time, np.diff(P01_list), plot_time, np.diff(P10_list), plot_time, np.diff(P11_list))
 plt.show()
 
