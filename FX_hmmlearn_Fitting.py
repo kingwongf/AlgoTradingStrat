@@ -7,15 +7,16 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 
-fx_data = pd.read_csv("FX_PData.csv", header=0)
+fx_data = pd.read_csv("FX_PData.csv", header=0, index_col ="Dates")
 
-usdeur_ratio = np.divide(fx_data['USDEUR_Close_Ask'],fx_data['USDEUR_Close_Bid'])
+print(fx_data.index[fx_data.index.get_loc('9/1/2018 0:05'):fx_data.index.get_loc('11/6/2018 19:35')])
 
-usdeur_ratio = np.array([usdeur_ratio]).T
+USDGBP_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Ask'],fx_data['EURGBP_Close_Ask']), fx_data['USDGBP_Close_Ask'])
 
-print(usdeur_ratio)
+fx_data['USDGBP_ratio'] = USDGBP_ratio
 
-dates = fx_data["Dates"]
+USDGBP_ratio = np.array([USDGBP_ratio]).T
+
 
 mu0_list =[]
 mu1_list =[]
@@ -35,6 +36,8 @@ def hmm_fit(reshape_ratio):
 
     # Predict the optimal sequence of internal hidden state
     hidden_states = model.predict(reshape_ratio)
+
+    print(hidden_states)
 
     print("done")
     ###############################################################################
@@ -61,10 +64,11 @@ def hmm_fit(reshape_ratio):
     return mu[0], mu[1], var[0], var[1], P00, P01, P10, P11
 
 
-for t in range(0,len(dates)-1000-1):
+for i in range(0, fx_data.index.get_loc('9/3/2018 19:35') - fx_data.index.get_loc('9/1/2018') + 1):
 
+    roll_window = USDGBP_ratio[fx_data.index.get_loc('9/1/2018') - 10000 + i:fx_data.index.get_loc('9/1/2018') + i]
 
-    mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(usdeur_ratio[t:t+100])
+    mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(roll_window)
     hold = [mu0, mu1, var0, var1, P00, P01, P10, P11]
 
     # print(mu0, mu1)
@@ -78,43 +82,39 @@ for t in range(0,len(dates)-1000-1):
     P10_list.append(P10)
     P11_list.append(P11)
 
-
-    timestamp = t + 30
-
-    current_ratio = usdeur_ratio[timestamp]
-
-
-
-    if abs(current_ratio - mu0) > abs(current_ratio - mu1):
-        current_state = 1
-    else:
-        current_state = 0
-
-    if current_state == 0:
-        if P01_list[t] - P01_list[t-1] > P00_list[t] - P00_list[t-1]:     # can change condition to > P00_list[t] - P00_list[t-1], anticipating a regime shift from 0 to 1, mu and sd changes to mu1 and sqrt(var1)
-            current_sd = np.sqrt(var1)
-            current_mu = mu1
-        else:
-            current_sd = np.sqrt(var0)
-            current_mu = mu0
-
-    elif P10_list[t] - P10_list[t-1] > P11_list[t] - P11_list[t-1]:
-        current_sd = np.sqrt(var0)
-        current_mu = mu0
-
-    else:
-        current_sd = np.sqrt(var1)
-        current_mu = mu1
-
-    # execution(current_mu, current_sd, timestamp)
-
-
-plot_time = range(len(np.diff(P00_list)))
+    # current_ratio = usdeur_ratio[timestamp]
+    #
+    #
+    #
+    # if abs(current_ratio - mu0) > abs(current_ratio - mu1):
+    #     current_state = 1
+    # else:
+    #     current_state = 0
+    #
+    # if current_state == 0:
+    #     if P01_list[t] - P01_list[t-1] > P00_list[t] - P00_list[t-1]:     # can change condition to > P00_list[t] - P00_list[t-1], anticipating a regime shift from 0 to 1, mu and sd changes to mu1 and sqrt(var1)
+    #         current_sd = np.sqrt(var1)
+    #         current_mu = mu1
+    #     else:
+    #         current_sd = np.sqrt(var0)
+    #         current_mu = mu0
+    #
+    # elif P10_list[t] - P10_list[t-1] > P11_list[t] - P11_list[t-1]:
+    #     current_sd = np.sqrt(var0)
+    #     current_mu = mu0
+    #
+    # else:
+    #     current_sd = np.sqrt(var1)
+    #     current_mu = mu1
+    #
+    # # execution(current_mu, current_sd, timestamp)
 
 
 
+
+plot_time = fx_data.index[fx_data.index.get_loc('9/1/2018'):fx_data.index.get_loc('9/3/2018 19:35')]
 plt.subplot(2,1,1)
-plt.plot(dates, usdeur_ratio)
+plt.plot(fx_data['USDGBP_ratio'].loc['9/1/2018':'9/3/2018 19:35'])
 plt.subplot(2,1,2)
 plt.plot(plot_time, np.diff(P00_list), plot_time, np.diff(P01_list), plot_time, np.diff(P10_list), plot_time, np.diff(P11_list))
-plt.show()
+plt.savefig('USDGBP_ratio.png')
