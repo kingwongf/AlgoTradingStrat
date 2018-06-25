@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-fx_data = pd.read_csv("hmm_test_data_set.csv", header=0)
+fx_data = pd.read_csv("../PData/hmm_test_data_set.csv", header=0)
 dates = np.array(fx_data['Date_AAPL'])
 
 ratio = np.array(fx_data['Close_AAPL'] / fx_data['Close_GOOG'])

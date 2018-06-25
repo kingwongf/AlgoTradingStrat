@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 
-fx_data = pd.read_csv("FX_PData.csv", header=0, index_col ="Dates")
+fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 
 
 USDGBP_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Ask'],fx_data['EURGBP_Close_Ask']), fx_data['USDGBP_Close_Ask'])
