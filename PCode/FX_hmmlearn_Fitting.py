@@ -63,11 +63,12 @@ def hmm_fit(reshape_ratio):
     return mu[0], mu[1], var[0], var[1], P00, P01, P10, P11
 
 
-for i in range(0, fx_data.index.get_loc('9/3/2018 19:35') - fx_data.index.get_loc('9/1/2018') + 1):
+for i in range(0, fx_data.index.get_loc('11/6/2018 19:35') - fx_data.index.get_loc('1/1/2018 0:00') + 1):
 
-    roll_window = USDGBP_ratio[fx_data.index.get_loc('9/1/2018') - 10000 + i:fx_data.index.get_loc('9/1/2018') + i]
+    roll_window = USDGBP_ratio[fx_data.index.get_loc('1/1/2018 0:00') - 10000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
 
     mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(roll_window)
+
     hold = [mu0, mu1, var0, var1, P00, P01, P10, P11]
 
     # print(mu0, mu1)
@@ -81,39 +82,12 @@ for i in range(0, fx_data.index.get_loc('9/3/2018 19:35') - fx_data.index.get_lo
     P10_list.append(P10)
     P11_list.append(P11)
 
-    # current_ratio = usdeur_ratio[timestamp]
-    #
-    #
-    #
-    # if abs(current_ratio - mu0) > abs(current_ratio - mu1):
-    #     current_state = 1
-    # else:
-    #     current_state = 0
-    #
-    # if current_state == 0:
-    #     if P01_list[t] - P01_list[t-1] > P00_list[t] - P00_list[t-1]:     # can change condition to > P00_list[t] - P00_list[t-1], anticipating a regime shift from 0 to 1, mu and sd changes to mu1 and sqrt(var1)
-    #         current_sd = np.sqrt(var1)
-    #         current_mu = mu1
-    #     else:
-    #         current_sd = np.sqrt(var0)
-    #         current_mu = mu0
-    #
-    # elif P10_list[t] - P10_list[t-1] > P11_list[t] - P11_list[t-1]:
-    #     current_sd = np.sqrt(var0)
-    #     current_mu = mu0
-    #
-    # else:
-    #     current_sd = np.sqrt(var1)
-    #     current_mu = mu1
-    #
-    # # execution(current_mu, current_sd, timestamp)
 
+transit_matrix = pd.DataFrame(
+    {'P00': P00_list,
+     'P01': P01_list,
+     'P10': P10_list,
+     'P11' : P11_list
+    })
 
-
-
-plot_time = fx_data.index[fx_data.index.get_loc('9/1/2018'):fx_data.index.get_loc('9/3/2018 19:35')]
-plt.subplot(2,1,1)
-plt.plot(fx_data['USDGBP_ratio'].loc['9/1/2018':'9/3/2018 19:35'])
-plt.subplot(2,1,2)
-plt.plot(plot_time, np.diff(P00_list), plot_time, np.diff(P01_list), plot_time, np.diff(P10_list), plot_time, np.diff(P11_list))
-plt.savefig('USDGBP_ratio.png')
+transit_matrix.to_csv("../PData/transit_matrix.csv")
