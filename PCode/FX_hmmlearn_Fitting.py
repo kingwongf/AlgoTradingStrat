@@ -65,7 +65,7 @@ def hmm_fit(reshape_ratio):
 
 for i in range(0, fx_data.index.get_loc('11/6/2018 19:35') - fx_data.index.get_loc('1/1/2018 0:00') + 1):
 
-    roll_window = USDGBP_ratio[fx_data.index.get_loc('1/1/2018 0:00') - 10000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
+    roll_window = USDGBP_ratio[fx_data.index.get_loc('1/1/2018 0:00') - 15000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
 
     mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(roll_window)
 
