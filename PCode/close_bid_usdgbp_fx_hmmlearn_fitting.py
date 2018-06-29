@@ -10,7 +10,8 @@ import matplotlib.cm as cm
 fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 
 
-USDGBP_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Ask'],fx_data['EURGBP_Close_Ask']), fx_data['USDGBP_Close_Ask'])
+USDGBP_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Bid']
+                                     ,fx_data['EURGBP_Close_Bid']), fx_data['USDGBP_Close_Bid'])
 
 fx_data['USDGBP_ratio'] = USDGBP_ratio
 
@@ -90,4 +91,4 @@ transit_matrix = pd.DataFrame(
      'P11' : P11_list
     })
 
-transit_matrix.to_csv("../PData/transit_matrix_ask_usdgbp.csv")
+transit_matrix.to_csv("../PData/transit_matrix_bid_usdgbp.csv")

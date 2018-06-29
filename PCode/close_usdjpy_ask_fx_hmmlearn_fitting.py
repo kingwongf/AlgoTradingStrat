@@ -10,11 +10,12 @@ import matplotlib.cm as cm
 fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 
 
-USDGBP_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Ask'],fx_data['EURGBP_Close_Ask']), fx_data['USDGBP_Close_Ask'])
+USDJPY_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Ask']
+                                     ,fx_data['EURJPY_Close_Ask']), fx_data['USDJPY_Close_Ask'])
 
-fx_data['USDGBP_ratio'] = USDGBP_ratio
+fx_data['USDJPY_ratio'] = USDJPY_ratio
 
-USDGBP_ratio = np.array([USDGBP_ratio]).T
+USDJPY_ratio = np.array([USDJPY_ratio]).T
 
 
 mu0_list =[]
@@ -65,7 +66,7 @@ def hmm_fit(reshape_ratio):
 
 for i in range(0, fx_data.index.get_loc('11/6/2018 19:35') - fx_data.index.get_loc('1/1/2018 0:00') + 1):
 
-    roll_window = USDGBP_ratio[fx_data.index.get_loc('1/1/2018 0:00') - 15000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
+    roll_window = USDJPY_ratio[fx_data.index.get_loc('1/1/2018 0:00') - 15000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
 
     mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(roll_window)
 
@@ -90,4 +91,4 @@ transit_matrix = pd.DataFrame(
      'P11' : P11_list
     })
 
-transit_matrix.to_csv("../PData/transit_matrix_ask_usdgbp.csv")
+transit_matrix.to_csv("../PData/transit_matrix_ask_usdjpy.csv")
