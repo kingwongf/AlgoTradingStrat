@@ -1,10 +1,6 @@
 import numpy as np
 from hmmlearn.hmm import GaussianHMM
-import matplotlib
 import pandas as pd
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
 
 
 fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
