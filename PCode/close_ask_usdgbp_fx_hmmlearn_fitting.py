@@ -10,12 +10,11 @@ import matplotlib.cm as cm
 fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 
 
-USDGBP_ratio = np.divide(np.multiply(fx_data['USDEUR_Close_Ask'],fx_data['EURGBP_Close_Ask']), fx_data['USDGBP_Close_Ask'])
+USDGBP_arb_profit = np.multiply(fx_data['USDEUR_Close_Ask'],fx_data['EURGBP_Close_Ask']) - fx_data['USDGBP_Close_Ask']
 
-fx_data['USDGBP_ratio'] = USDGBP_ratio
+fx_data['_arb_profit'] = USDGBP_arb_profit
 
-USDGBP_ratio = np.array([USDGBP_ratio]).T
-
+USDGBP_arb_profit = np.array([USDGBP_arb_profit]).T
 
 mu0_list =[]
 mu1_list =[]
@@ -65,7 +64,7 @@ def hmm_fit(reshape_ratio):
 
 for i in range(0, fx_data.index.get_loc('11/6/2018 19:35') - fx_data.index.get_loc('1/1/2018 0:00') + 1):
 
-    roll_window = USDGBP_ratio[fx_data.index.get_loc('1/1/2018 0:00') - 15000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
+    roll_window = USDGBP_arb_profit[fx_data.index.get_loc('1/1/2018 0:00') - 15000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
 
     mu0, mu1, var0, var1, P00, P01, P10, P11 = hmm_fit(roll_window)
 

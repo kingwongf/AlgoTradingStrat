@@ -4,12 +4,12 @@ py.tools.set_credentials_file(username='kingwongf', api_key='vwqbsMCcdGLvf5LNkCR
 import plotly.graph_objs as go
 import pandas as pd
 
-df_transit_matrix = pd.read_csv("../PData/transitr_matrix.csv", header =0)
+df_transit_matrix = pd.read_csv("../PData/transit_matrix.csv", header =0)
 
 df_macro_news_impact = pd.read_csv("../PData/New_Duplicates_Removed_MacroNews09_11_2017_11_06_2018_EURUSD.csv"
                                    , header=0)
-train_period = df_macro_news_impact.index[df_macro_news_impact.get_loc('1/1/2018 0:00')
-                                          :df_macro_news_impact.get_loc('11/6/2018 19:35')]
+train_period = df_macro_news_impact.index[df_macro_news_impact.index.get_loc('01/01/2018 00:00')
+                                          :df_macro_news_impact.index.get_loc('11/06/2018 19:35')]
 
 P01 = go.Scatter(x=train_period,y=df_transit_matrix['P01'], name = "P01", line = dict(color = '#17BECF'), opacity = 0.8)
 P11 = go.Scatter(x=train_period,y=df_transit_matrix['P11'], name = "P11", line = dict(color = '#cf5a17'), opacity = 0.8)

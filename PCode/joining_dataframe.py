@@ -27,6 +27,7 @@ USDGBP_ratio_time_plot = go.Scattergl(x=fx_news_data_join.index, y=USDGBP_ratio,
                            , line = dict(color = '#cf1717'), opacity = 0.8)
 
 mkt_vol = fx_news_data_join['Volatility']
+
 macro_news_impact = go.Scattergl(x=fx_news_data_join.index, y=mkt_vol, name = "mmacro news impact",yaxis='y2', line = dict(color = '#17cf17'))
 
 transit_prob_P00 = go.Scattergl(x=fx_data.index[fx_data.index.get_loc('1/1/2018 0:00'):fx_data.index.get_loc('11/6/2018 19:35')], y = transit_matrix['P00'])
