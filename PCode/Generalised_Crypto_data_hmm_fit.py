@@ -42,7 +42,19 @@ def hmm_fit(seq_feature, n_state):
 
 
 fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
-cx_data = pd.read_csv("../PData/Crypto_PData.csv", header=0, index_col ="Dates")
+xbt_data = pd.read_csv("../PData/XBTUSDEUR.csv", header=0, index_col ="Dates")
+cx_data_0208 = pd.read_csv("../PData/Crypto_Full_PData.csv", header=0, index_col ="Dates")
+
+
+cxfx_data = fx_data.join(xbt_data)
+
+
+for i in range(0,len(xbt_data.index.values)):
+    print(xbt_data.index.values[i]==fx_data.index.values[i])
+
+
+
+
 
 
 ## data start on 09/11/2017  22:00:00
@@ -74,18 +86,24 @@ arb_profit_USDEUR_bid = np.multiply(1/cx_data['XBTUSD_Close_Ask'], cx_data['XBTE
 running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_spd_XRPUSD,
                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
+print(np.multiply(1/cx_data['XBTUSD_Close_Bid'], cx_data['XBTEUR_Close_Ask']))
+print(fx_data['USDEUR_Close_Ask'].loc['08/02/2018 04:40'])
+
 running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
 
 dfrun = pd.DataFrame([running_list], columns=running_list_label)
 
 
+
 for vec in dfrun:
     seq_to_fit = np.array(dfrun[vec].tolist()).T
+
     for n in range(2,11):
         model_score =[]
         P_list = []
         print(vec)
+
         if str(vec) ==  "bidask_spd_XETUSD" or str(vec) == "bidask_spd_XRPUSD" or str(vec) == "bidask_spd_XETEUR":
 
             for i in range(0, cx_data.index.get_loc('19/06/2018 05:25') -
@@ -122,14 +140,17 @@ for vec in dfrun:
         else:
             # for i in range(0, cx_data.index.get_loc('19/06/2018  15:25') -
             #                   cx_data.index.get_loc('01/01/2018  00:00:00') + 1): ##TODO change it back later
-            for i in range(0, cx_data.index.get_loc('01/01/2018  00:00:00') -
-                              cx_data.index.get_loc('01/01/2018  00:00:00') + 1):
+
+            for i in range(0, cx_data.index.get_loc('02/01/2018') -
+                              cx_data.index.get_loc('01/01/2018') + 1):
+
                 roll_window = seq_to_fit[
-                              cx_data.index.get_loc('01/01/2018  00:00:00') - 15000 + i:cx_data.index.get_loc(
-                                  '01/01/2018  00:00:00') + i]
+                              cx_data.index.get_loc('01/01/2018') - 10775 + i:cx_data.index.get_loc(
+                                  '01/01/2018') + i]
 
                 n_state = n  # number of states fitted
 
+                print(roll_window)
                 P, model_score_logprob = hmm_fit(roll_window, n_state)
 
                 P_list.append(P)
