@@ -41,44 +41,40 @@ def hmm_fit(seq_feature, n_state):
 
 
 
-fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
-xbt_data = pd.read_csv("../PData/XBTUSDEUR.csv", header=0, index_col ="Dates")
-cx_data_0208 = pd.read_csv("../PData/Crypto_Full_PData.csv", header=0, index_col ="Dates")
+fx_data = pd.read_excel("../PData/FX_PData.xlsx", header=0, index_col ="Dates")
+xbt_data = pd.read_excel("../PData/XBTUSDEUR.xlsx", header=0, index_col ="Dates")
+cx_data_0208 = pd.read_excel("../PData/Crypto_Full_PData.xlsx", header=0, index_col ="Dates")
 
 
-cxfx_data = fx_data.join(xbt_data)
+xbtfx_data = fx_data.join(xbt_data)
 
-
-for i in range(0,len(xbt_data.index.values)):
-    print(xbt_data.index.values[i]==fx_data.index.values[i])
-
-
+cxfx_data = fx_data.join(cx_data_0208)
 
 
 
 
 ## data start on 09/11/2017  22:00:00
-bidask_spd_XBTUSD = cx_data['XBTUSD_Close_Ask'] - cx_data['XBTUSD_Close_Bid']
+bidask_spd_XBTUSD = xbtfx_data['XBTUSD_Close_Ask'] - xbtfx_data['XBTUSD_Close_Bid']
 
-bidask_spd_XBTEUR = cx_data['XBTEUR_Close_Ask'] - cx_data['XBTEUR_Close_Bid']
-
-
-
-## data start on 08/02/2018  04:45:00
-
-bidask_spd_XETUSD = cx_data['XETUSD_Close_Ask'] - cx_data['XETUSD_Close_Bid']
-
-bidask_spd_XRPUSD = cx_data['XRPUSD_Close_Ask'] - cx_data['XRPUSD_Close_Bid']
-
-bidask_spd_XETEUR = cx_data['XETEUR_Close_Ask'] - cx_data['XETEUR_Close_Bid']
+bidask_spd_XBTEUR = xbtfx_data['XBTEUR_Close_Ask'] - xbtfx_data['XBTEUR_Close_Bid']
 
 
 
-arb_profit_USDEUR_ask = np.multiply(1/cx_data['XBTUSD_Close_Bid'], cx_data['XBTEUR_Close_Ask']) - \
-                        fx_data['USDEUR_Close_Ask']
+## data start on 08/02/2018  04:40:00
 
-arb_profit_USDEUR_bid = np.multiply(1/cx_data['XBTUSD_Close_Ask'], cx_data['XBTEUR_Close_Bid']) - \
-                        fx_data['USDEUR_Close_Bid']
+bidask_spd_XETUSD = cxfx_data['XETUSD_Close_Ask'] - cxfx_data['XETUSD_Close_Bid']
+
+bidask_spd_XRPUSD = cxfx_data['XRPUSD_Close_Ask'] - cxfx_data['XRPUSD_Close_Bid']
+
+bidask_spd_XETEUR = cxfx_data['XETEUR_Close_Ask'] - cxfx_data['XETEUR_Close_Bid']
+
+
+
+arb_profit_USDEUR_ask = np.multiply(1/xbtfx_data['XBTUSD_Close_Bid'], xbtfx_data['XBTEUR_Close_Ask']) - \
+                        xbtfx_data['USDEUR_Close_Ask']
+
+arb_profit_USDEUR_bid = np.multiply(1/xbtfx_data['XBTUSD_Close_Ask'], xbtfx_data['XBTEUR_Close_Bid']) - \
+                        xbtfx_data['USDEUR_Close_Bid']
 
 
 
@@ -86,8 +82,6 @@ arb_profit_USDEUR_bid = np.multiply(1/cx_data['XBTUSD_Close_Ask'], cx_data['XBTE
 running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_spd_XRPUSD,
                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
-print(np.multiply(1/cx_data['XBTUSD_Close_Bid'], cx_data['XBTEUR_Close_Ask']))
-print(fx_data['USDEUR_Close_Ask'].loc['08/02/2018 04:40'])
 
 running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
