@@ -80,6 +80,7 @@ running_list_label = ["bidask_spd_USDEUR", "bidask_spd_USDGBP", "bidask_spd_USDJ
 dfrun = pd.DataFrame([running_list], columns=running_list_label)
 
 
+
 for vec in dfrun:
     seq_to_fit = np.array(dfrun[vec].tolist()).T
     for n in range(2,11):
@@ -89,8 +90,7 @@ for vec in dfrun:
         #                   fx_data.index.get_loc('1/1/2018 0:00') + 1): ##TODO change it back later
         for i in range(0, fx_data.index.get_loc('1/1/2018 1:00') - fx_data.index.get_loc('1/1/2018 0:00') + 1):
 
-            roll_window = seq_to_fit[
-                          fx_data.index.get_loc('1/1/2018 0:00') - 15000 + i:fx_data.index.get_loc('1/1/2018 0:00') + i]
+            roll_window = seq_to_fit[i:fx_data.index.get_loc('1/1/2018 0:00') + i]
 
             n_state = n # number of states fitted
 

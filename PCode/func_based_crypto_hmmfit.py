@@ -4,6 +4,7 @@ from hmmlearn.base import _BaseHMM
 import pandas as pd
 import gc
 import warnings
+import gc
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
@@ -82,8 +83,6 @@ arb_profit_USDEUR_bid = np.multiply(1/xbtfx_data['XBTUSD_Close_Ask'], xbtfx_data
                         xbtfx_data['USDEUR_Close_Bid']
 
 
-
-
 running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_spd_XRPUSD,
                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
@@ -93,83 +92,39 @@ running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETU
 
 dfrun = pd.DataFrame([running_list], columns=running_list_label)
 
+rolling=100
 
-# 20/04/2018  03:10:00'
-# 19/06/2018  15:25:00
-
-
-print(cxfx_data.index.get_loc('2018-04-20T03:10:00.000000000'))
-print(cxfx_data.index.get_loc('2018-06-11T19:35:00.000000000'))
-
+gc.enable()
 for vec in dfrun:
+    # print(dfrun[vec])
     seq_to_fit = np.array(dfrun[vec].tolist()).T
+    print(seq_to_fit)
 
     for n in range(2,11):
         model_score =[]
         P_list = []
+
+        for i in range(len(seq_to_fit - rolling)):
+
+            roll_window = seq_to_fit[i:i+rolling]
+
+            P, model_score_logprob = hmm_fit(roll_window, n)
+
+            print(P)
+
+            P_list.append(P)
+            model_score.append(np.mean(model_score_logprob))
+
+
+        P_label_list = ['P' + str(i) + str(j) for i in range(0,n) for j in range(0,n)]
+
+        transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
+
+        transit_matrix['Score'] = model_score
         print(vec)
 
-        if str(vec) ==  "bidask_spd_XETUSD" or str(vec) == "bidask_spd_XRPUSD" or str(vec) == "bidask_spd_XETEUR":
+        file_name = "../PData/transit_matrix/Cypto_transit_matrix_" + str(vec) + "_" + str(n) + "_states.h5"
+        transit_matrix.to_hdf(file_name)
 
-            # for i in range(0, cxfx_data.index.get_loc('2018-06-11T19:35:00.000000000') -   ##TODO change it back later
-            #                   cxfx_data.index.get_loc('2018-04-20T03:10:00.000000000') + 1):
-
-            for i in range(0, cxfx_data.index.get_loc('2018-04-20T04:10:00.000000000') -
-                              cxfx_data.index.get_loc('2018-04-20T03:10:00.000000000') + 1):
-
-
-                roll_window = seq_to_fit[i:cxfx_data.index.get_loc('2018-04-20T03:10:00.000000000') + i]
-
-                n_state = n # number of states fitted
-
-                P, model_score_logprob = hmm_fit(roll_window, n_state)
-
-                P_list.append(P)
-                model_score.append(np.mean(model_score_logprob))
-
-
-            P_label_list = ['P' + str(i) + str(j) for i in range(0,n_state) for j in range(0, n_state)]
-
-            transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
-
-
-            transit_matrix['Score'] = model_score
-            print(vec)
-
-            file_name = "../PData/transit_matrix/transit_matrix_" + str(vec) + "_" + str(n) + "_states.csv"
-            transit_matrix.to_csv(file_name)
-
-            print(str(12 - n) + " out of 11 states model left to fit and " +
-                  str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
-        else:
-
-            # 19/01/2018  08:05:00
-            # 11/06/2018  19:35:00
-            # ('2018-06-11T19:35:00.000000000')
-            # for i in range(0, xbtfx_data.index.get_loc('2018-06-11T19:35:00.000000000') -
-            #                  xbtfx_data.index.get_loc('2018-01-19T08:05:00.000000000') + 1):  ##TODO change it back later
-
-            for i in range(0, xbtfx_data.index.get_loc('2018-01-19T09:05:00.000000000') -
-                              xbtfx_data.index.get_loc('2018-01-19T08:05:00.000000000') + 1):
-
-                roll_window = seq_to_fit[i:xbtfx_data.index.get_loc('2018-01-19T08:05:00.000000000') + i]
-
-                n_state = n  # number of states fitted
-
-                P, model_score_logprob = hmm_fit(roll_window, n_state)
-
-                P_list.append(P)
-                model_score.append(np.mean(model_score_logprob))
-
-            P_label_list = ['P' + str(i) + str(j) for i in range(0, n_state) for j in range(0, n_state)]
-
-            transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
-
-            transit_matrix['Score'] = model_score
-            print(vec)
-
-            file_name = "../PData/transit_matrix/transit_matrix_" + str(vec) + "_" + str(n) + "_states.csv"
-            transit_matrix.to_csv(file_name)
-
-            print(str(12 - n) + " out of 11 states model left to fit and " +
-                  str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
+        print(str(12 - n) + " out of 11 states model left to fit and " +
+              str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
