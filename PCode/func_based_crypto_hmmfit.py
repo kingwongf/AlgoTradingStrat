@@ -2,9 +2,12 @@ import numpy as np
 from hmmlearn.hmm import GaussianHMM
 from hmmlearn.base import _BaseHMM
 import pandas as pd
-import gc
+import itertools
 import warnings
 import gc
+from functools import partial
+from itertools import repeat
+from multiprocessing import Pool, freeze_support
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
@@ -87,44 +90,106 @@ running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_
                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
 
+
+
+
+
 running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
 
-dfrun = pd.DataFrame([running_list], columns=running_list_label)
+# dfrun = pd.DataFrame([running_list], columns=running_list_label)
 
-rolling=100
+rolling=44894
 
 gc.enable()
-for vec in dfrun:
-    # print(dfrun[vec])
-    seq_to_fit = np.array(dfrun[vec].tolist()).T
-    print(seq_to_fit)
+# for vec in dfrun:
+#     # print(dfrun[vec])
+#     seq_to_fit = np.array(dfrun[vec].tolist()).T
+#
+#
+#     for n in range(2,11):
+#         model_score =[]
+#         P_list = []
+#
+#         for i in range(len(seq_to_fit) - rolling):
+#
+#             roll_window = seq_to_fit[i:i+rolling]
+#
+#             P, model_score_logprob = hmm_fit(roll_window, n)
+#
+#             P_list.append(P)
+#             model_score.append(np.mean(model_score_logprob))
+#
+#
+#         P_label_list = ['P' + str(i) + str(j) for i in range(0,n) for j in range(0,n)]
+#
+#         transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
+#
+#         transit_matrix['Score'] = model_score
+#         print(vec)
+#
+#         print(transit_matrix)
+#         file_name = "../PData/Crypto_transit_matrix_/" + str(vec) + "_" + str(n) + "_states.h5"
+#         store = pd.HDFStore(file_name)
+#         key = str(vec) + "_" + str(n)
+#
+#         transit_matrix.to_hdf(file_name, key=key )
+#         store.close()
+#
+#         print(str(12 - n) + " out of 11 states model left to fit and " +
+#               str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
+#         gc.collect()
 
-    for n in range(2,11):
-        model_score =[]
-        P_list = []
+def backtesting(vec, str_name, n, rolling):
+    # seq_to_fit = vec.T
+    seq_to_fit = vec.values.reshape(1, -1)
+    model_score = []
+    P_list = []
 
-        for i in range(len(seq_to_fit - rolling)):
+    for i in range(len(seq_to_fit) - rolling):
 
-            roll_window = seq_to_fit[i:i+rolling]
+        roll_window = seq_to_fit[i:i + rolling]
 
-            P, model_score_logprob = hmm_fit(roll_window, n)
+        P, model_score_logprob = hmm_fit(roll_window, n)
 
-            print(P)
+        P_list.append(P)
+        model_score.append(np.mean(model_score_logprob))
 
-            P_list.append(P)
-            model_score.append(np.mean(model_score_logprob))
+    P_label_list = ['P' + str(i) + str(j) for i in range(0, n) for j in range(0, n)]
+
+    transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
+
+    transit_matrix['Score'] = model_score
+
+    print(transit_matrix)
+    file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + "_states.h5"
+    store = pd.HDFStore(file_name)
+    key = str_name + "_" + str(n)
+
+    transit_matrix.to_hdf(file_name, key=key)
+    store.close()
+
+    # gc.collect()
 
 
-        P_label_list = ['P' + str(i) + str(j) for i in range(0,n) for j in range(0,n)]
+## run parellel
+def main():
+    n_states_list =[2,3,4,5,6,7,8,9,10]*9
+    vec2d = [[v]*9 for v in running_list]
+    merged_vec = list(itertools.chain(*vec2d))
+    merged_vec_name = [str(name) for name in merged_vec]
+    rolling_list = [44894]*81
+    print(merged_vec)
 
-        transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
+    with Pool() as pool:
 
-        transit_matrix['Score'] = model_score
-        print(vec)
+        pool.starmap(backtesting, zip(repeat(bidask_spd_XBTUSD),repeat("bidask_spd_XBTUSD"), [2,3,4,5,6,7,8,9,10], repeat(44894)))
 
-        file_name = "../PData/transit_matrix/Cypto_transit_matrix_" + str(vec) + "_" + str(n) + "_states.h5"
-        transit_matrix.to_hdf(file_name)
+if __name__=="__main__":
+    freeze_support()
+    main()
 
-        print(str(12 - n) + " out of 11 states model left to fit and " +
-              str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
+
+
+
+# backtesting(bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 2, 44894)
