@@ -140,7 +140,7 @@ gc.enable()
 #               str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
 #         gc.collect()
 
-def backtesting(vec, str_name, n, rolling):
+def backtesting(n,vec, str_name,  rolling):
     # seq_to_fit = vec.T
     seq_to_fit = vec.values.reshape(1, -1)
     model_score = []
@@ -161,7 +161,6 @@ def backtesting(vec, str_name, n, rolling):
 
     transit_matrix['Score'] = model_score
 
-    print(transit_matrix)
     file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + "_states.h5"
     store = pd.HDFStore(file_name)
     key = str_name + "_" + str(n)
@@ -174,16 +173,16 @@ def backtesting(vec, str_name, n, rolling):
 
 ## run parellel
 def main():
-    n_states_list =[2,3,4,5,6,7,8,9,10]*9
-    vec2d = [[v]*9 for v in running_list]
-    merged_vec = list(itertools.chain(*vec2d))
-    merged_vec_name = [str(name) for name in merged_vec]
-    rolling_list = [44894]*81
-    print(merged_vec)
-
+    # n_states_list =[2,3,4,5,6,7,8,9,10]*9
+    # vec2d = [[v]*9 for v in running_list]
+    # merged_vec = list(itertools.chain(*vec2d))
+    # merged_vec_name = [str(name) for name in merged_vec]
+    # rolling_list = [44894]*81
+    # print(merged_vec)
+    print(bidask_spd_XBTUSD)
+    states_list = range(2,11)
     with Pool() as pool:
-
-        pool.starmap(backtesting, zip(repeat(bidask_spd_XBTUSD),repeat("bidask_spd_XBTUSD"), [2,3,4,5,6,7,8,9,10], repeat(44894)))
+        pool.starmap(backtesting, zip(states_list, repeat(bidask_spd_XBTUSD),repeat("bidask_spd_XBTUSD"), repeat(44894)))
 
 if __name__=="__main__":
     freeze_support()
@@ -192,4 +191,4 @@ if __name__=="__main__":
 
 
 
-# backtesting(bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 2, 44894)
+# backtesting(2, bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 44894)

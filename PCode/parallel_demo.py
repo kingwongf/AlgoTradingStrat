@@ -28,12 +28,12 @@ def funSquare(num):
 def func(a, b):
     np.random.seed()
     x = np.random.randn(a)
-    b = 2*x
-    return b
+    y = x*b
+    return x,y
 
 def main():
     a_args = range(10000)
-    second_arg = [1,3,4,5,6]
+    second_arg = 8
     with Pool() as pool:
         # for i in range(1000):
         #     M = pool.starmap(func, zip(a_args, repeat(second_arg)))
