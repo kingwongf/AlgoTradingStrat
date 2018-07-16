@@ -141,17 +141,20 @@ gc.enable()
 #         gc.collect()
 
 def backtesting(n,vec, str_name,  rolling):
-    #seq_to_fit = vec.values.T
-    seq_to_fit = vec.values.reshape(1, -1)
+    seq_to_fit = vec
+    # seq_to_fit = vec.values.T
+    # seq_to_fit = vec.values.reshape(1, -1)
     model_score = []
     P_list = []
-    print(len(seq_to_fit))
+
 
     for i in range(len(seq_to_fit) - rolling):
         roll_window = seq_to_fit[i:i + rolling]
-        print(len(roll_window))
+        # print(len(roll_window))
+        roll_window = np.array(roll_window).reshape(-1, 1)
+        # print(len(roll_window))
         P, model_score_logprob = hmm_fit(roll_window, n)
-        print(P)
+        # print(P)
         P_list.append(P)
         model_score.append(np.mean(model_score_logprob))
 
@@ -171,26 +174,28 @@ def backtesting(n,vec, str_name,  rolling):
     # gc.collect()
 
 
-# ## run parellel
-# def main():
-#     # n_states_list =[2,3,4,5,6,7,8,9,10]*9
-#     # vec2d = [[v]*9 for v in running_list]
-#     # merged_vec = list(itertools.chain(*vec2d))
-#     # merged_vec_name = [str(name) for name in merged_vec]
-#     # rolling_list = [44894]*81
-#     # print(merged_vec)
-#     print(bidask_spd_XBTUSD)
-#     states_list = range(2,11)
-#     with Pool() as pool:
-#         pool.starmap(backtesting, zip(states_list, repeat(bidask_spd_XBTUSD),repeat("bidask_spd_XBTUSD"), repeat(44894)))
-#
-# if __name__=="__main__":
-#     freeze_support()
-#     main()
+## run parellel
+def main():
+    # n_states_list =[2,3,4,5,6,7,8,9,10]*9
+    # vec2d = [[v]*9 for v in running_list]
+    # merged_vec = list(itertools.chain(*vec2d))
+    # merged_vec_name = [str(name) for name in merged_vec]
+    # rolling_list = [44894]*81
+    # print(merged_vec)
+
+    # print(bidask_spd_XBTUSD)
+    states_list = range(2,11)
+    with Pool(processes=6) as pool:
+        for seq in running_list:
+            pool.starmap(backtesting, zip(states_list, repeat(seq),repeat(str(seq)), repeat(44894)))
+
+if __name__=="__main__":
+    freeze_support()
+    main()
 
 
 
 
-backtesting(2, bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 44894)
+# backtesting(2, bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 44894)
 
 # print(hmm_fit(bidask_spd_XBTUSD, 2))

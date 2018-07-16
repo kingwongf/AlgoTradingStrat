@@ -4,17 +4,16 @@
     <list default="true" id="df3c6980-6073-428c-bf4c-106b35c0e622" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" afterPath="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" />
-      <change beforePath="$PROJECT_DIR$/PCode/parallel_demo.py" afterPath="$PROJECT_DIR$/PCode/parallel_demo.py" />
       <change beforePath="$PROJECT_DIR$/PCode/readhdf.py" afterPath="$PROJECT_DIR$/PCode/readhdf.py" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_10_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_10_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_2_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_2_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_3_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_3_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_4_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_4_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_5_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_5_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_6_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_6_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_7_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_7_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_8_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_8_states.h5" />
-      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_9_states.h5" afterPath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_9_states.h5" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_10_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_2_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_3_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_4_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_5_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_6_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_7_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_8_states.h5" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/PData/Crypto_transit_matrix_/bidask_spd_XBTUSD_9_states.h5" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,7 +39,7 @@
       <file leaf-file-name="Parallelized_FX_data_hmm_fit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/Parallelized_FX_data_hmm_fit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="-4">
               <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -62,25 +61,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Generalised_FX_data_hmm_fit.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
+      <file leaf-file-name="hmm_pairs_trading_algo.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PCode/hmm_pairs_trading_algo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="75" column="105" lean-forward="false" selection-start-line="75" selection-start-column="105" selection-end-line="75" selection-end-column="105" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#332#1138#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="-139">
+              <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hmm_pairs_trading_algo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PCode/hmm_pairs_trading_algo.py">
+      <file leaf-file-name="Generalised_FX_data_hmm_fit.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
-              <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="271">
+              <caret line="75" column="105" lean-forward="false" selection-start-line="75" selection-start-column="105" selection-end-line="75" selection-end-column="105" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,8 +86,8 @@
       <file leaf-file-name="func_based_crypto_hmmfit.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="159" column="18" lean-forward="false" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
+            <state relative-caret-position="440">
+              <caret line="187" column="25" lean-forward="false" selection-start-line="187" selection-start-column="25" selection-end-line="187" selection-end-column="25" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -100,8 +98,8 @@
       <file leaf-file-name="readhdf.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/readhdf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="30">
+              <caret line="2" column="73" lean-forward="false" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -128,6 +126,7 @@
       <find>log</find>
       <find>compute</find>
       <find>repea</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>USDJPY</replace>
@@ -204,12 +203,6 @@
               <item name="AlgoTradingStrat" type="462c0819:PsiDirectoryNode" />
               <item name="PData" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="AlgoTradingStrat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AlgoTradingStrat" type="462c0819:PsiDirectoryNode" />
-              <item name="PData" type="462c0819:PsiDirectoryNode" />
-              <item name="Crypto_transit_matrix_" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -221,10 +214,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/PCode" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/PCode" />
     </key>
   </component>
@@ -240,7 +233,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.readhdf">
+  <component name="RunManager" selected="Python.Generlised_FX_HMM_fit">
     <configuration name="FX_hmmlearn" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -431,23 +424,36 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772493" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41185078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772493" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26700804" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56839794" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26290706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991952" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13037351" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3570887" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772493" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45866862" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26700804" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56839794" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1830818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13037351" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3570887" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -673,7 +679,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/Parallelized_FX_data_hmm_fit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="-4">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -716,37 +722,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PCode/readhdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="271">
           <caret line="75" column="105" lean-forward="false" selection-start-line="75" selection-start-column="105" selection-end-line="75" selection-end-column="105" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#332#1138#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/hmm_pairs_trading_algo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
+        <state relative-caret-position="-139">
           <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/readhdf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="73" lean-forward="false" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="159" column="18" lean-forward="false" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
+        <state relative-caret-position="440">
+          <caret line="187" column="25" lean-forward="false" selection-start-line="187" selection-start-column="25" selection-end-line="187" selection-end-column="25" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
