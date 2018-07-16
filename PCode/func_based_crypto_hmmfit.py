@@ -141,8 +141,10 @@ gc.enable()
 #         gc.collect()
 
 def backtesting(n,vec, str_name,  rolling):
-    # seq_to_fit = vec.T
     seq_to_fit = vec.values.reshape(1, -1)
+    # seq_to_fit = np.array(vec.tolist()).reshape(1, -1)
+    # seq_to_fit = vec.T
+    # seq_to_fit = vec.values.reshape(1, -1)
     model_score = []
     P_list = []
 
@@ -161,34 +163,35 @@ def backtesting(n,vec, str_name,  rolling):
 
     transit_matrix['Score'] = model_score
 
-    file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + "_states.h5"
-    store = pd.HDFStore(file_name)
-    key = str_name + "_" + str(n)
-
-    transit_matrix.to_hdf(file_name, key=key)
-    store.close()
+    # file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + "_states.h5"
+    # store = pd.HDFStore(file_name)
+    # key = str_name + "_" + str(n)
+    #
+    # transit_matrix.to_hdf(file_name, key=key)
+    # store.close()
 
     # gc.collect()
+    file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + "_states.csv"
+    transit_matrix.to_csv(file_name)
+
+# ## run parellel
+# def main():
+#     # n_states_list =[2,3,4,5,6,7,8,9,10]*9
+#     # vec2d = [[v]*9 for v in running_list]
+#     # merged_vec = list(itertools.chain(*vec2d))
+#     # merged_vec_name = [str(name) for name in merged_vec]
+#     # rolling_list = [44894]*81
+#     # print(merged_vec)
+#     print(bidask_spd_XBTUSD)
+#     states_list = [2,3,4,5,6,7,8,9,10]
+#     with Pool(processes=6) as pool:
+#         pool.starmap(backtesting, zip(states_list, repeat(bidask_spd_XBTUSD),repeat("bidask_spd_XBTUSD"), repeat(44894)))
+#
+# if __name__=="__main__":
+#     freeze_support()
+#     main()
 
 
-## run parellel
-def main():
-    # n_states_list =[2,3,4,5,6,7,8,9,10]*9
-    # vec2d = [[v]*9 for v in running_list]
-    # merged_vec = list(itertools.chain(*vec2d))
-    # merged_vec_name = [str(name) for name in merged_vec]
-    # rolling_list = [44894]*81
-    # print(merged_vec)
-    print(bidask_spd_XBTUSD)
-    states_list = range(2,11)
-    with Pool() as pool:
-        pool.starmap(backtesting, zip(states_list, repeat(bidask_spd_XBTUSD),repeat("bidask_spd_XBTUSD"), repeat(44894)))
 
-if __name__=="__main__":
-    freeze_support()
-    main()
-
-
-
-
-# backtesting(2, bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 44894)
+# bidask_spd_XBTUSD = bidask_spd_XBTUSD.tolist()
+backtesting(7, bidask_spd_XBTUSD, "bidask_spd_XBTUSD", 44893)
