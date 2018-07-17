@@ -12,9 +12,9 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def hmm_fit(seq_feature, n_state):
-    print("fitting to HMM and decoding ...", end="")
+    # print("fitting to HMM and decoding ...", end="")
     # Make an HMM instance and execute fit
-    model = GaussianHMM(n_components= n_state, covariance_type="diag", n_iter=1000).fit(seq_feature)
+    model = GaussianHMM(n_components= n_state, covariance_type="diag", n_iter=100).fit(seq_feature)
 
     # print(model.score(model.sample(100)[0]))
 
@@ -25,7 +25,7 @@ def hmm_fit(seq_feature, n_state):
 
     # print(hidden_states)
 
-    print("done")
+    # print("done")
     ###############################################################################
     # Print trained parameters and plot
     # print("Transition matrix")
@@ -39,6 +39,45 @@ def hmm_fit(seq_feature, n_state):
     # print(P)
 
     return P, model_score_logprob
+
+def backtesting(n,vec, str_name,  rolling):
+    seq_to_fit = vec
+    # seq_to_fit = vec.values.T
+    # seq_to_fit = vec.values.reshape(1, -1)
+    model_score = []
+    P_list = []
+
+
+    for i in range(len(seq_to_fit) - rolling):
+        roll_window = seq_to_fit[i:i + rolling]
+        # print(len(roll_window))
+        roll_window = np.array(roll_window).reshape(-1, 1)
+        # print(len(roll_window))
+        P, model_score_logprob = hmm_fit(roll_window, n)
+        # print(P)
+        P_list.append(P)
+        model_score.append(np.mean(model_score_logprob))
+
+    P_label_list = ['P' + str(i) + str(j) for i in range(0, n) for j in range(0, n)]
+
+    transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
+
+    transit_matrix['Score'] = model_score
+
+    # h5, not threadsafe
+    file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + ".h5"
+    store = pd.HDFStore(file_name)
+    key = str_name + "_" + str(n)
+
+    transit_matrix.to_hdf(file_name, key=key)
+    store.close()
+
+    # # csv
+    # file_name = str_name + "_" + str(n) + ".csv"
+    #
+    # transit_matrix.to_csv(file_name)
+
+    # gc.collect()
 
 
 
@@ -90,88 +129,14 @@ running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_
                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
 
-
-
-
-
 running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
 
 # dfrun = pd.DataFrame([running_list], columns=running_list_label)
 
-rolling=44894
+
 
 gc.enable()
-# for vec in dfrun:
-#     # print(dfrun[vec])
-#     seq_to_fit = np.array(dfrun[vec].tolist()).T
-#
-#
-#     for n in range(2,11):
-#         model_score =[]
-#         P_list = []
-#
-#         for i in range(len(seq_to_fit) - rolling):
-#
-#             roll_window = seq_to_fit[i:i+rolling]
-#
-#             P, model_score_logprob = hmm_fit(roll_window, n)
-#
-#             P_list.append(P)
-#             model_score.append(np.mean(model_score_logprob))
-#
-#
-#         P_label_list = ['P' + str(i) + str(j) for i in range(0,n) for j in range(0,n)]
-#
-#         transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
-#
-#         transit_matrix['Score'] = model_score
-#         print(vec)
-#
-#         print(transit_matrix)
-#         file_name = "../PData/Crypto_transit_matrix_/" + str(vec) + "_" + str(n) + "_states.h5"
-#         store = pd.HDFStore(file_name)
-#         key = str(vec) + "_" + str(n)
-#
-#         transit_matrix.to_hdf(file_name, key=key )
-#         store.close()
-#
-#         print(str(12 - n) + " out of 11 states model left to fit and " +
-#               str(len(dfrun.columns) - dfrun.columns.get_loc(vec)) + " sequences left")
-#         gc.collect()
-
-def backtesting(n,vec, str_name,  rolling):
-    seq_to_fit = vec
-    # seq_to_fit = vec.values.T
-    # seq_to_fit = vec.values.reshape(1, -1)
-    model_score = []
-    P_list = []
-
-
-    for i in range(len(seq_to_fit) - rolling):
-        roll_window = seq_to_fit[i:i + rolling]
-        # print(len(roll_window))
-        roll_window = np.array(roll_window).reshape(-1, 1)
-        # print(len(roll_window))
-        P, model_score_logprob = hmm_fit(roll_window, n)
-        # print(P)
-        P_list.append(P)
-        model_score.append(np.mean(model_score_logprob))
-
-    P_label_list = ['P' + str(i) + str(j) for i in range(0, n) for j in range(0, n)]
-
-    transit_matrix = pd.DataFrame(P_list, columns=P_label_list)
-
-    transit_matrix['Score'] = model_score
-
-    file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + "_states.h5"
-    store = pd.HDFStore(file_name)
-    key = str_name + "_" + str(n)
-
-    transit_matrix.to_hdf(file_name, key=key)
-    store.close()
-
-    # gc.collect()
 
 
 ## run parellel
@@ -186,8 +151,8 @@ def main():
     # print(bidask_spd_XBTUSD)
     states_list = range(2,11)
     with Pool(processes=6) as pool:
-        for seq in running_list:
-            pool.starmap(backtesting, zip(states_list, repeat(seq),repeat(str(seq)), repeat(44894)))
+        for seq in range(len(running_list)):
+            pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
 
 if __name__=="__main__":
     freeze_support()
