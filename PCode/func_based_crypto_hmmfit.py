@@ -47,8 +47,8 @@ def backtesting(n,vec, str_name,  rolling):
     model_score = []
     P_list = []
 
-
-    for i in range(len(seq_to_fit) - rolling):
+    for i in range(6048):      ## backtesting the first 6,048 models, approx 1 month = 21 days * 24hr/day * 60min/ hr / 5min interval
+    # for i in range(len(seq_to_fit) - rolling):    ## full backtesting window
         roll_window = seq_to_fit[i:i + rolling]
         # print(len(roll_window))
         roll_window = np.array(roll_window).reshape(-1, 1)
@@ -65,7 +65,7 @@ def backtesting(n,vec, str_name,  rolling):
     transit_matrix['Score'] = model_score
 
     # h5, not threadsafe
-    file_name = "../PData/Crypto_transit_matrix_/" + str_name + "_" + str(n) + ".h5"
+    file_name = "../PData/Crypto_transit_matrix_/6048_backtesting/" + str_name + "_" + str(n) + ".h5"
     store = pd.HDFStore(file_name)
     key = str_name + "_" + str(n)
 
@@ -150,9 +150,11 @@ def main():
 
     # print(bidask_spd_XBTUSD)
     states_list = range(2,11)
-    with Pool(processes=6) as pool:
-        for seq in range(len(running_list)):
-            pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
+    with Pool() as pool:
+        pool.starmap(backtesting,
+                     zip(states_list, repeat(bidask_spd_XBTUSD), repeat("bidask_spd_XBTUSD"), repeat(15000)))
+        # for seq in range(len(running_list)):
+        #     pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
 
 if __name__=="__main__":
     freeze_support()
