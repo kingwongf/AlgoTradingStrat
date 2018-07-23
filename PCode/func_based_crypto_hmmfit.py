@@ -125,11 +125,17 @@ arb_profit_USDEUR_bid = np.multiply(1/xbtfx_data['XBTUSD_Close_Ask'], xbtfx_data
                         xbtfx_data['USDEUR_Close_Bid']
 
 
-running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_spd_XRPUSD,
+# running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_spd_XRPUSD,
+#                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
+
+running_list = [bidask_spd_XETUSD, bidask_spd_XRPUSD,
                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
 
-running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
+# running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
+#                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
+
+running_list_label = ["bidask_spd_XETUSD", "bidask_spd_XRPUSD",
                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
 
 # dfrun = pd.DataFrame([running_list], columns=running_list_label)
@@ -139,22 +145,21 @@ running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETU
 gc.enable()
 
 
-## run parellel
-def main():
-    # n_states_list =[2,3,4,5,6,7,8,9,10]*9
-    # vec2d = [[v]*9 for v in running_list]
-    # merged_vec = list(itertools.chain(*vec2d))
-    # merged_vec_name = [str(name) for name in merged_vec]
-    # rolling_list = [44894]*81
-    # print(merged_vec)
 
-    # print(bidask_spd_XBTUSD)
-    states_list = range(2,11)
+def main():
+    states_list = range(2, 11)
+    # backtesting(9, bidask_spd_XBTEUR, "bidask_spd_XBTEUR", 15000)
+    # backtesting(10, bidask_spd_XBTEUR, "bidask_spd_XBTEUR", 15000)
+    # for li in range(len(running_list)):
+    #     for lj in states_list:
+    #         backtesting(lj, running_list[li], running_list_label[li], 15000)
+
+    # run parellel
     with Pool() as pool:
         pool.starmap(backtesting,
-                     zip(states_list, repeat(bidask_spd_XBTUSD), repeat("bidask_spd_XBTUSD"), repeat(15000)))
+                       zip(states_list, repeat(bidask_spd_XETUSD), repeat("bidask_spd_XETUSD"), repeat(15000)))
         # for seq in range(len(running_list)):
-        #     pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
+        #      pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
 
 if __name__=="__main__":
     freeze_support()
