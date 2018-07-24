@@ -118,25 +118,34 @@ bidask_spd_XETEUR = cxfx_data['XETEUR_Close_Ask'] - cxfx_data['XETEUR_Close_Bid'
 
 
 ## data start on 09/11/2017  22:00:00
-arb_profit_USDEUR_ask = np.multiply(1/xbtfx_data['XBTUSD_Close_Bid'], xbtfx_data['XBTEUR_Close_Ask']) - \
+arb_profit_USDEUR_ask_fromXBT = np.multiply(1/xbtfx_data['XBTUSD_Close_Bid'], xbtfx_data['XBTEUR_Close_Ask']) - \
                         xbtfx_data['USDEUR_Close_Ask']
 
-arb_profit_USDEUR_bid = np.multiply(1/xbtfx_data['XBTUSD_Close_Ask'], xbtfx_data['XBTEUR_Close_Bid']) - \
+arb_profit_USDEUR_bid_fromXBT = np.multiply(1/xbtfx_data['XBTUSD_Close_Ask'], xbtfx_data['XBTEUR_Close_Bid']) - \
                         xbtfx_data['USDEUR_Close_Bid']
+
+
+arb_profit_USDEUR_ask_fromXET = np.multiply(1/cxfx_data['XETUSD_Close_Bid'], cxfx_data['XETEUR_Close_Ask']) - \
+                        cxfx_data['USDEUR_Close_Ask']
+
+arb_profit_USDEUR_bid_fromXET = np.multiply(1/cxfx_data['XETUSD_Close_Ask'], cxfx_data['XETEUR_Close_Bid']) - \
+                        cxfx_data['USDEUR_Close_Bid']
 
 
 # running_list = [bidask_spd_XBTUSD, bidask_spd_XBTEUR, bidask_spd_XETUSD, bidask_spd_XRPUSD,
 #                 bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
 
 running_list = [bidask_spd_XETUSD, bidask_spd_XRPUSD,
-                bidask_spd_XETEUR, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid]
+                bidask_spd_XETEUR, arb_profit_USDEUR_ask_fromXBT,
+                arb_profit_USDEUR_bid_fromXBT, arb_profit_USDEUR_ask_fromXET]
 
 
 # running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XBTEUR", "bidask_spd_XETUSD", "bidask_spd_XRPUSD",
 #                       "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
 
 running_list_label = ["bidask_spd_XETUSD", "bidask_spd_XRPUSD",
-                      "bidask_spd_XETEUR", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid"]
+                      "bidask_spd_XETEUR", "arb_profit_USDEUR_ask_fromXBT",
+                      "arb_profit_USDEUR_bid_fromXBT","arb_profit_USDEUR_ask_fromXET"]
 
 # dfrun = pd.DataFrame([running_list], columns=running_list_label)
 
@@ -157,7 +166,7 @@ def main():
     # run parellel
     with Pool() as pool:
         pool.starmap(backtesting,
-                       zip(states_list, repeat(bidask_spd_XETUSD), repeat("bidask_spd_XETUSD"), repeat(15000)))
+                       zip(states_list, repeat(bidask_spd_XRPUSD), repeat("bidask_spd_XRPUSD"), repeat(15000)))
         # for seq in range(len(running_list)):
         #      pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
 
