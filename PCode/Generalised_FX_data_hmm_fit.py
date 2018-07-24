@@ -106,13 +106,22 @@ arb_profit_USDJPY_ask = np.multiply(fx_data['USDEUR_Close_Ask'], fx_data['EURJPY
 arb_profit_USDJPY_bid = np.multiply(fx_data['USDEUR_Close_Bid'], fx_data['EURJPY_Close_Bid']) - \
                         fx_data['USDJPY_Close_Bid']
 
+arb_profit_USDEUR_ask = np.multiply(np.divide(1,fx_data['EURJPY_Close_Bid']), fx_data['USDJPY_Close_Ask']) - \
+                        fx_data['USDJPY_Close_Ask']
 
-running_list = [bidask_spd_USDEUR, bidask_spd_USDGBP, bidask_spd_USDJPY, bidask_spd_EURJPY, bidask_spd_EURGBP,
-                arb_profit_USDGBP_ask, arb_profit_USDGBP_bid, arb_profit_USDJPY_ask, arb_profit_USDJPY_bid]
+arb_profit_USDEUR_bid = np.multiply(np.divide(1,fx_data['EURJPY_Close_Ask']), fx_data['USDJPY_Close_Bid']) - \
+                        fx_data['USDJPY_Close_Bid']
 
-running_list_label = ["bidask_spd_USDEUR", "bidask_spd_USDGBP", "bidask_spd_USDJPY", "bidask_spd_EURJPY",
-                      "bidask_spd_EURGBP", "arb_profit_USDGBP_ask", "arb_profit_USDGBP_bid",
-                      "arb_profit_USDJPY_ask", "arb_profit_USDJPY_bid"]
+
+running_list = [bidask_spd_USDEUR, bidask_spd_USDGBP, bidask_spd_USDJPY,
+                arb_profit_USDGBP_ask, arb_profit_USDGBP_bid, arb_profit_USDJPY_ask,
+                arb_profit_USDJPY_bid, arb_profit_USDEUR_ask, arb_profit_USDEUR_bid,
+                bidask_spd_EURJPY, bidask_spd_EURGBP]
+
+running_list_label = ["bidask_spd_USDEUR", "bidask_spd_USDGBP", "bidask_spd_USDJPY",
+                      "arb_profit_USDGBP_ask", "arb_profit_USDGBP_bid", "arb_profit_USDJPY_ask",
+                      "arb_profit_USDJPY_bid", "arb_profit_USDEUR_ask", "arb_profit_USDEUR_bid",
+                      "bidask_spd_EURJPY", "bidask_spd_EURGBP"]
 
 
 
