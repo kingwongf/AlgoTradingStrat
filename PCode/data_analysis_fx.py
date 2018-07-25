@@ -8,7 +8,40 @@ import matplotlib as plt
 plt.use('TkAgg')
 import statsmodels.api as stats
 from sklearn.linear_model import LinearRegression
+from sklearn import linear_model
+from scipy import stats
+import numpy as np
 
+
+class LinearRegression(linear_model.LinearRegression):
+    """
+    LinearRegression class after sklearn's, but calculate t-statistics
+    and p-values for model coefficients (betas).
+    Additional attributes available after .fit()
+    are `t` and `p` which are of the shape (y.shape[1], X.shape[1])
+    which is (n_features, n_coefs)
+    This class sets the intercept to 0 by default, since usually we include it
+    in X.
+    """
+
+    def __init__(self, *args, **kwargs):
+        if not "fit_intercept" in kwargs:
+            kwargs['fit_intercept'] = False
+        super(LinearRegression, self)\
+                .__init__(*args, **kwargs)
+
+    def fit(self, X, y, n_jobs=1):
+        self = super(LinearRegression, self).fit(X, y, n_jobs)
+
+        sse = np.sum((self.predict(X) - y) ** 2, axis=0) / float(X.shape[0] - X.shape[1])
+        se = np.array([
+            np.sqrt(np.diagonal(sse[i] * np.linalg.inv(np.dot(X.T, X))))
+                                                    for i in range(sse.shape[0])
+                    ])
+
+        self.t = self.coef_ / se
+        self.p = 2 * (1 - stats.t.cdf(np.abs(self.t), y.shape[0] - X.shape[1]))
+        return self
 
 ## read data
 
@@ -20,25 +53,25 @@ cx_data_0208 = pd.read_excel("../PData/Crypto_Full_PData.xlsx", header=0, index_
 
 
 
-ret_USDGBP_ask = np.diff(fx_data['USDGBP_Close_Ask'])
+ret_USDGBP_ask = np.diff(np.log(fx_data['USDGBP_Close_Ask']))
 
-ret_USDGBP_bid = np.diff(fx_data['USDGBP_Close_Bid'])
+ret_USDGBP_bid = np.diff(np.log(fx_data['USDGBP_Close_Bid']))
 
-ret_USDJPY_ask = np.diff(fx_data['USDJPY_Close_Ask'])
+ret_USDJPY_ask = np.diff(np.log(fx_data['USDJPY_Close_Ask']))
 
-ret_USDJPY_bid = np.diff(fx_data['USDJPY_Close_Bid'])
+ret_USDJPY_bid = np.diff(np.log(fx_data['USDJPY_Close_Bid']))
 
-ret_USDEUR_ask = np.diff(fx_data['USDEUR_Close_Ask'])
+ret_USDEUR_ask = np.diff(np.log(fx_data['USDEUR_Close_Ask']))
 
-ret_USDEUR_bid = np.diff(fx_data['USDEUR_Close_Bid'])
+ret_USDEUR_bid = np.diff(np.log(fx_data['USDEUR_Close_Bid']))
 
-ret_EURJPY_ask = np.diff(fx_data['EURJPY_Close_Ask'])
+ret_EURJPY_ask = np.diff(np.log(fx_data['EURJPY_Close_Ask']))
 
-ret_EURJPY_bid = np.diff(fx_data['EURJPY_Close_Bid'])
+ret_EURJPY_bid = np.diff(np.log(fx_data['EURJPY_Close_Bid']))
 
-ret_EURGBP_ask = np.diff(fx_data['EURGBP_Close_Ask'])
+ret_EURGBP_ask = np.diff(np.log(fx_data['EURGBP_Close_Ask']))
 
-ret_EURGBP_bid = np.diff(fx_data['EURGBP_Close_Bid'])
+ret_EURGBP_bid = np.diff(np.log(fx_data['EURGBP_Close_Bid']))
 
 
 
@@ -88,8 +121,7 @@ def features_analysis(arb, bidask, ret):
         y = y.reshape(-1, 1)
         linreg = LinearRegression(fit_intercept=True)
         linreg.fit(x,y)
-        linreg.get_params()
-        return [np.round(linreg.score(x,y),decimals=2), np.round(linreg.coef_[0][0],decimals=2)]
+        return [np.round(linreg.score(x,y),decimals=2), np.round(linreg.p[0][0],decimals=2)]
 
     arb_ret = OLS(np.diff(arb), ret)
     bidask_ret = OLS(np.diff(bidask), ret)
@@ -122,6 +154,8 @@ df = [features_analysis(arb_list[i],bidask_list[i],ret_list[i]) for i in range(l
 df = pd.DataFrame(df, index=ret_list_label, columns=["arb / ret", "bidask/ ret", "arb/ bidask"])
 
 # [print(i,j,k) for i in arb_list_label for j in bidask_list_label for k in ret_list_label]
+
+print(df)
 
 df.to_csv("../PData/fx_data_analysis.csv")
 
