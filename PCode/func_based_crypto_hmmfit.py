@@ -173,7 +173,7 @@ gc.enable()
 
 
 def main():
-    states_list = range(2, 11)
+    states_list = range(2, 9)
     # backtesting(9, bidask_spd_XBTEUR, "bidask_spd_XBTEUR", 15000)
     # backtesting(10, bidask_spd_XBTEUR, "bidask_spd_XBTEUR", 15000)
     # for li in range(len(running_list)):
@@ -185,7 +185,7 @@ def main():
         # pool.starmap(backtesting,
         #                zip(states_list, repeat(bidask_spd_XETEUR), repeat("bidask_spd_XETEUR"), repeat(15000)))
         pool.starmap(backtesting,
-                     zip(states_list, repeat(arb_profit_XBTUSD_ask), repeat("arb_profit_XBTUSD_ask"), repeat(15000)))
+                     zip(states_list, repeat(arb_profit_XBTUSD_bid), repeat("arb_profit_XBTUSD_bid"), repeat(15000)))
         # for seq in range(len(running_list)):
         #      pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
 
