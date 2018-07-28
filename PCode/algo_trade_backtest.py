@@ -26,7 +26,7 @@ def order(long_short, bid_ind, ask_ind, long_order, short_order,
         return (-number_of_currency * bid_ind*(1+transact))
     else:
         holdings.append(holdings[-1] - number_of_currency)
-        notional.append(notional[-1] + number_of_currency*bid_ind*(1+transact))
+        notional.append(notional[-1] + number_of_currency*bid_ind)
         short_order.append(-number_of_currency*bid_ind)
 
 
