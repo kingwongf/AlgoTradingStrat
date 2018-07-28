@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df3c6980-6073-428c-bf4c-106b35c0e622" name="Default" comment="" />
+    <list default="true" id="df3c6980-6073-428c-bf4c-106b35c0e622" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" afterPath="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,31 +14,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="close_ask_usdgbp_fx_hmmlearn_fitting.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PCode/close_ask_usdgbp_fx_hmmlearn_fitting.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="118" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Parallelized_FX_data_hmm_fit.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PCode/Parallelized_FX_data_hmm_fit.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#461#1267#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="parallel_demo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/parallel_demo.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -73,8 +51,8 @@
       <file leaf-file-name="func_based_crypto_hmmfit.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="125" column="105" lean-forward="true" selection-start-line="125" selection-start-column="105" selection-end-line="125" selection-end-column="105" />
+            <state relative-caret-position="695">
+              <caret line="187" column="98" lean-forward="false" selection-start-line="187" selection-start-column="98" selection-end-line="187" selection-end-column="98" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#366#1175#0" expanded="false" />
@@ -87,8 +65,8 @@
       <file leaf-file-name="Generalised_FX_data_hmm_fit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="99" column="34" lean-forward="false" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
+            <state relative-caret-position="94">
+              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#366#1175#0" expanded="false" />
@@ -106,16 +84,6 @@
               <folding>
                 <marker date="1532550118000" expanded="false" signature="0:7" ph="import ..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readhdf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PCode/readhdf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -173,11 +141,11 @@
         <option value="$PROJECT_DIR$/PCode/parallel_demo.py" />
         <option value="$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py" />
         <option value="$PROJECT_DIR$/PCode/readhdf.py" />
-        <option value="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" />
         <option value="$PROJECT_DIR$/PCode/ploty_USDGBP_Implied_to_Market_Ratio.py" />
         <option value="$PROJECT_DIR$/PCode/corr_USDGBP.py" />
         <option value="$PROJECT_DIR$/PCode/data_analysis_cx.py" />
         <option value="$PROJECT_DIR$/PCode/data_analysis_fx.py" />
+        <option value="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" />
       </list>
     </option>
   </component>
@@ -313,7 +281,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="AlgoTradingStrat" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PCode/data_analysis_fx.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -450,14 +418,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="274" y="26" width="1804" height="1414" extended-state="0" />
+    <frame x="628" y="22" width="1804" height="1414" extended-state="0" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20828603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772493" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2994693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2994693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30629265" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13037351" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -547,13 +515,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/price_concantate_news.csv" />
     <entry file="file://$PROJECT_DIR$/PData/MacroNews09_11_2017_11_06_2018.csv" />
-    <entry file="file://$PROJECT_DIR$/PCode/4stateDGP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-866">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/4stateDGP.py" />
     <entry file="file://$PROJECT_DIR$/PCode/DGP with HMM learn in transition matrix.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1752">
@@ -581,13 +543,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/JPYUSD_fx_hmmlearn_fitting.py" />
     <entry file="file://$PROJECT_DIR$/PCode/close_bid_eurusd_fx_hmmlearn_fitting.py" />
-    <entry file="file://$PROJECT_DIR$/PCode/close_usdjpy_ask_fx_hmmlearn_fitting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="49" column="11" lean-forward="false" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/close_usdjpy_ask_fx_hmmlearn_fitting.py" />
     <entry file="file://$PROJECT_DIR$/PCode/FX_hmmlearn_Fitting.py" />
     <entry file="file://$PROJECT_DIR$/../stock-predictor/Naive_OLS.py" />
     <entry file="file://$PROJECT_DIR$/PCode/ploty_transit_matrix.py">
@@ -604,39 +560,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PCode/close_bid_usdgbp_fx_hmmlearn_fitting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PCode/usdgbp_bid_ask_spread_hmmlearn_fitting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="69" column="21" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="69" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PCode/close_usdjpy_bid_fx_hmmlearn_fitting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="82" column="24" lean-forward="true" selection-start-line="82" selection-start-column="24" selection-end-line="82" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/close_bid_usdgbp_fx_hmmlearn_fitting.py" />
+    <entry file="file://$PROJECT_DIR$/PCode/usdgbp_bid_ask_spread_hmmlearn_fitting.py" />
+    <entry file="file://$PROJECT_DIR$/PCode/close_usdjpy_bid_fx_hmmlearn_fitting.py" />
     <entry file="file://$PROJECT_DIR$/PData/USDGBP_Rato_Transit_Matrix_09012018_09032018.csv" />
     <entry file="file://$PROJECT_DIR$/PData/transit_matrix_bid_usdjpy.csv" />
-    <entry file="file://$PROJECT_DIR$/PCode/close_ask_usdgbp_fx_hmmlearn_fitting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="118" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/close_ask_usdgbp_fx_hmmlearn_fitting.py" />
     <entry file="file://$PROJECT_DIR$/PData/FX_PData.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="923880">
@@ -689,17 +618,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PCode/Parallelized_FX_data_hmm_fit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#461#1267#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/Parallelized_FX_data_hmm_fit.py" />
     <entry file="file://$PROJECT_DIR$/PCode/Generalised_Crypto_data_hmm_fit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -746,14 +665,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PCode/readhdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PCode/readhdf.py" />
     <entry file="file://$PROJECT_DIR$/PCode/ploty_USDGBP_Implied_to_Market_Ratio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -763,8 +675,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="99" column="34" lean-forward="false" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
+        <state relative-caret-position="94">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#366#1175#0" expanded="false" />
@@ -810,8 +722,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="125" column="105" lean-forward="true" selection-start-line="125" selection-start-column="105" selection-end-line="125" selection-end-column="105" />
+        <state relative-caret-position="695">
+          <caret line="187" column="98" lean-forward="false" selection-start-line="187" selection-start-column="98" selection-end-line="187" selection-end-column="98" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#366#1175#0" expanded="false" />
