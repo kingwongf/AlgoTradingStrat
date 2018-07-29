@@ -14,7 +14,7 @@ py.tools.set_credentials_file(username='kingwongf', api_key='vwqbsMCcdGLvf5LNkCR
 
 
 ## read list of optimal models
-from for_xbtcx_find_opt_model import find_opt
+from for_fx_find_opt_model import find_opt
 
 opt_model = find_opt()      ## list of str(name) of optimal models
 
@@ -24,7 +24,7 @@ opt_model = find_opt()      ## list of str(name) of optimal models
 transit_global = []
 for name in opt_model:
     store = pd.HDFStore(name)
-    df = pd.read_hdf(store, name[49:-3])    ## name of the directory to ".h5"
+    df = pd.read_hdf(store, name[28:-3])    ## drop name of the directory to ".h5"
     store.close()
     transition_matrix = df.drop(labels='Score', axis=1)
     # print(transition_matrix)
@@ -34,30 +34,20 @@ for name in opt_model:
     transit_global.append(list_transit)     ## list in the order of find_opt_model
 
 #### read bid, ask price
-fx_data = pd.read_excel("../PData/FX_PData.xlsx", header=0, index_col ="Dates")
-xbt_data = pd.read_excel("../PData/XBTUSDEUR.xlsx", header=0, index_col ="Dates")
-cx_data_0208 = pd.read_excel("../PData/Crypto_Full_PData.xlsx", header=0, index_col ="Dates")
-
-
-xbtfx_data = fx_data.join(xbt_data)
-cxfx_data = fx_data.join(cx_data_0208)
-
-xbtfx_data = xbtfx_data.dropna()
-cxfx_data = cxfx_data.dropna()
+fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 
 #####  run backtest model
 from algo_trade_backtest import main
 PnL_global = {}
 for ind_global, transit_m in enumerate(transit_global):
     label = opt_model[ind_global][49:-3]
-    ticker = label[label.index('X'):label.index('X')+6]
-    if label.find("XBT") > 0:
-        ask = xbtfx_data[ticker + '_Close_Ask']
-        bid = xbtfx_data[ticker + '_Close_Bid']
+    try:
+        ticker = label[label.index('USD'):label.index('USD')+6]
+    except:
+        ticker = label[label.index('EUR'):label.index('EUR')+6]
 
-    if label.find("XET") > 0:
-        ask = cxfx_data[ticker + '_Close_Ask']
-        bid = cxfx_data[ticker + '_Close_Bid']
+    ask = fx_data[ticker + '_Close_Ask']
+    bid = fx_data[ticker + '_Close_Bid']
 
     ## if xbt: use xbtfx, if xetusd/eur: use cxfx
 

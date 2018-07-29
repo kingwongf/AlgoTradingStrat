@@ -28,10 +28,10 @@ def find_opt():
                 store = pd.HDFStore("../PData/Crypto_transit_matrix_/6048_backtesting/"+ j + "_" + "%s"%i + ".h5")
                 df = pd.read_hdf(store, j + "_"+'%s'%i)
                 store.close()
+                BIC(df, i)
+                avg_BIC.append(np.mean(df['BIC']))
             except:
                 pass
-            BIC(df, i)
-            avg_BIC.append(np.mean(df['BIC']))
         opt_state = (avg_BIC.index(min(avg_BIC)) + 2)
         opt_model_name = "../PData/Crypto_transit_matrix_/6048_backtesting/"+ j + "_" + str(opt_state) + ".h5"
         df_opt_model[x] = opt_model_name
