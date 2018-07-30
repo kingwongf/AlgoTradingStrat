@@ -46,7 +46,8 @@ cxfx_data = cxfx_data.dropna()
 
 #####  run backtest model
 from algo_trade_backtest import main
-PnL_global = {}
+Net_pos_global = {}
+shift_global = {}
 for ind_global, transit_m in enumerate(transit_global):
     label = opt_model[ind_global][49:-3]
     print(label)
@@ -64,10 +65,12 @@ for ind_global, transit_m in enumerate(transit_global):
     P_label_list = ['P' + str(i) + str(j) for i in range(0, len(transit_m)) for j in range(0, len(transit_m))]
 
     for ind,P in enumerate(transit_m):
-        PnL = main(P=P, bid=bid, ask=ask)
-        PnL_global[label + "_" + P_label_list[ind]] = PnL
+        Net_pos, shift = main(P=P, bid=bid, ask=ask)
+        Net_pos_global[label + "_" + P_label_list[ind]] = Net_pos
+        shift_global[label + "_" + P_label_list[ind]] = shift
 
-dd.io.save('../PData/CX_PnL.h5', PnL_global, compression=None)
+dd.io.save('../PData/CX_Net_pos_global.h5', Net_pos_global, compression=None)
+dd.io.save('../PData/CX_Shift_global.h5', shift_global, compression=None)
 
 
 # print(transit_global['bidask_spd_XBTUSD_10'])

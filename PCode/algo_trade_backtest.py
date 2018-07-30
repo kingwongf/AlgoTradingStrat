@@ -31,24 +31,31 @@ def order(long_short, bid_ind, ask_ind, long_order, short_order,
 
 
 def main(P, bid, ask):
-    PnL = []
+    shift = []
+    net_pos = []
     long_order = []
     short_order = []
     holdings = [0]
     notional = [1000000] ## USD/ EUR
     position_limit = 1000000 + 500000
     for i in range(10, len(P)-10):
-        PnL.append(net_position(holdings, notional, ask[i]))
+        net_pos.append(net_position(holdings, notional, ask[i]))
         assert -position_limit <= net_position(holdings, notional, ask[i])
         if P[i] > np.mean(P[i-10:i]) + np.std(P[i-10:i]):
+            shift.append(1)
             if net_position(holdings, notional, ask[i]) + \
                     order(True, bid[i], ask[i], long_order, short_order, True, holdings, notional) < position_limit:
                 order(True, bid[i], ask[i], long_order, short_order,False, holdings, notional)
+
         if P[i] < np.mean(P[i:i-10]) - np.std(P[i:i-10]):
+            shift.append(-1)
             if net_position(long_order, short_order) + \
                     order(False, bid[i], ask[i], long_order, short_order,True, holdings, notional)> - position_limit:
                 order(False, bid[i], ask[i], long_order, short_order,False, holdings, notional)
-    return PnL
+
+        else:
+            shift.append(0)
+    return net_pos, shift
 
 
 
