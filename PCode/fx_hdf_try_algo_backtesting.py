@@ -1,5 +1,5 @@
 import pandas as pd
-
+import deepdish as dd
 import numpy as np
 import matplotlib as mpl
 mpl.use('TkAgg')
@@ -40,7 +40,8 @@ fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 from algo_trade_backtest import main
 PnL_global = {}
 for ind_global, transit_m in enumerate(transit_global):
-    label = opt_model[ind_global][49:-3]
+    label = opt_model[ind_global][31:-3]
+    print(label)
     try:
         ticker = label[label.index('USD'):label.index('USD')+6]
     except:
@@ -51,14 +52,16 @@ for ind_global, transit_m in enumerate(transit_global):
 
     ## if xbt: use xbtfx, if xetusd/eur: use cxfx
 
-    for P in transit_m:
+    P_label_list = ['P' + str(i) + str(j) for i in range(0, len(transit_m)) for j in range(0, len(transit_m))]
+
+    for ind, P in enumerate(transit_m):
         PnL = main(P=P, bid=bid, ask=ask)
-        PnL_global[label] = PnL
+        PnL_global[label + "_" + P_label_list[ind]] = PnL
 
 
 # print(transit_global['bidask_spd_XBTUSD_10'])
 
-
+dd.io.save('../PData/FX_PnL.h5', PnL_global, compression=None)
 
 
 #############

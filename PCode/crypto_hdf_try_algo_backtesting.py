@@ -64,7 +64,6 @@ for ind_global, transit_m in enumerate(transit_global):
     P_label_list = ['P' + str(i) + str(j) for i in range(0, len(transit_m)) for j in range(0, len(transit_m))]
 
     for ind,P in enumerate(transit_m):
-        print(P_label_list[ind])
         PnL = main(P=P, bid=bid, ask=ask)
         PnL_global[label + "_" + P_label_list[ind]] = PnL
 
