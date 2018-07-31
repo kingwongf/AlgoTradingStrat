@@ -38,7 +38,7 @@ def main(P, bid, ask):
     holdings = [0]
     notional = [1000000] ## USD/ EUR
     position_limit = 1000000 + 500000
-    for i in range(10, len(P)-10):
+    for i in range(10, len(P)):
         net_pos.append(net_position(holdings, notional, ask[i]))
         assert -position_limit <= net_position(holdings, notional, ask[i])
         if P[i] > np.mean(P[i-10:i]) + np.std(P[i-10:i]):
