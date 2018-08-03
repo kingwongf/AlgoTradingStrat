@@ -14,7 +14,6 @@ def find_opt():
                           "arb_profit_XBTEUR_bid", "arb_profit_XETUSD_ask", "arb_profit_XETUSD_bid",
                           "arb_profit_XETEUR_ask", "arb_profit_XETEUR_bid"]
 
-    running_list_label = ["bidask_spd_XBTUSD", "bidask_spd_XETUSD","bidask_spd_XETEUR"]
 
 ### try to read bidask_spd_XBTEUR_9 and _10 first
 

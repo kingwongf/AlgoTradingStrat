@@ -31,6 +31,7 @@ def order(long_short, bid_ind, ask_ind, long_order, short_order,
 
 
 def main(P, bid, ask):
+    z_score = 1
     shift = []
     net_pos = []
     long_order = []
@@ -41,13 +42,13 @@ def main(P, bid, ask):
     for i in range(10, len(P)):
         net_pos.append(net_position(holdings, notional, ask[i]))
         assert -position_limit <= net_position(holdings, notional, ask[i])
-        if P[i] > np.mean(P[i-10:i]) + np.std(P[i-10:i]):
+        if P[i] > np.mean(P[i-10:i]) + np.std(P[i-10:i])*z_score:
             shift.append(1)
             if net_position(holdings, notional, ask[i]) + \
                     order(True, bid[i], ask[i], long_order, short_order, True, holdings, notional) < position_limit:
                 order(True, bid[i], ask[i], long_order, short_order,False, holdings, notional)
 
-        if P[i] < np.mean(P[i:i-10]) - np.std(P[i:i-10]):
+        elif P[i] < np.mean(P[i:i-10]) - np.std(P[i:i-10])*z_score:
             shift.append(-1)
             if net_position(long_order, short_order) + \
                     order(False, bid[i], ask[i], long_order, short_order,True, holdings, notional)> - position_limit:

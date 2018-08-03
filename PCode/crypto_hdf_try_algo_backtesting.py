@@ -6,6 +6,8 @@ mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 import plotly as py
 py.tools.set_credentials_file(username='kingwongf', api_key='vwqbsMCcdGLvf5LNkCRK')
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 
 
@@ -50,15 +52,14 @@ Net_pos_global = {}
 shift_global = {}
 for ind_global, transit_m in enumerate(transit_global):
     label = opt_model[ind_global][49:-3]
-    print(label)
     ticker = label[label.index('X'):label.index('X')+6]
     if label.find("XBT") > 0:
-        ask = xbtfx_data[ticker + '_Close_Ask']
-        bid = xbtfx_data[ticker + '_Close_Bid']
+        ask = xbtfx_data[ticker + '_Close_Ask'][15000:15000 + 6048]
+        bid = xbtfx_data[ticker + '_Close_Bid'][15000:15000 + 6048]
 
     if label.find("XET") > 0:
-        ask = cxfx_data[ticker + '_Close_Ask']
-        bid = cxfx_data[ticker + '_Close_Bid']
+        ask = cxfx_data[ticker + '_Close_Ask'][15000:15000 + 6048]
+        bid = cxfx_data[ticker + '_Close_Bid'][15000:15000 + 6048]
 
     ## if xbt: use xbtfx, if xetusd/eur: use cxfx
 

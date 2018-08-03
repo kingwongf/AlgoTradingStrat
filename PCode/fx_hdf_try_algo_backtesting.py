@@ -48,8 +48,8 @@ for ind_global, transit_m in enumerate(transit_global):
     except:
         ticker = label[label.index('EUR'):label.index('EUR')+6]
 
-    ask = fx_data[ticker + '_Close_Ask']
-    bid = fx_data[ticker + '_Close_Bid']
+    ask = fx_data[ticker + '_Close_Ask'][15000+10:15000+6048]
+    bid = fx_data[ticker + '_Close_Bid'][15000+10:15000+6048]
 
     ## if xbt: use xbtfx, if xetusd/eur: use cxfx
 

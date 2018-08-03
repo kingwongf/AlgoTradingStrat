@@ -3,8 +3,9 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from plotly import tools
-import plotly.plotly as py
 tools.set_credentials_file(username='kingwongf', api_key='vwqbsMCcdGLvf5LNkCRK')
+import plotly.plotly as py
+
 import plotly.graph_objs as go
 
 z_score = 1.645
