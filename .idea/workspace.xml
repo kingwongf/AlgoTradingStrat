@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df3c6980-6073-428c-bf4c-106b35c0e622" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/AlgoTradingStrat.iml" afterPath="$PROJECT_DIR$/.idea/AlgoTradingStrat.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="df3c6980-6073-428c-bf4c-106b35c0e622" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/PCode/crypto_hdf_try_algo_backtesting.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -30,41 +26,41 @@
       <file leaf-file-name="algo_trade_backtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/algo_trade_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+            <state relative-caret-position="414">
+              <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hmm_pairs_trading_algo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PCode/hmm_pairs_trading_algo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Generalised_FX_data_hmm_fit.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Generalised_FX_data_hmm_fit.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="117" column="84" lean-forward="false" selection-start-line="117" selection-start-column="84" selection-end-line="117" selection-end-column="84" />
+            <state relative-caret-position="184">
+              <caret line="105" column="97" lean-forward="false" selection-start-line="105" selection-start-column="97" selection-end-line="105" selection-end-column="97" />
               <folding>
+                <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#366#1175#0" expanded="false" />
-                <element signature="e#1225#2283#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shift_analysis.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shift_analysis.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/shift_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+            <state relative-caret-position="1065">
+              <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seglearn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PCode/seglearn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -85,8 +81,8 @@
       <file leaf-file-name="func_based_crypto_hmmfit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="-12">
+              <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#366#1175#0" expanded="false" />
@@ -123,7 +119,7 @@
       <file leaf-file-name="fx_hdf_try_algo_backtesting.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PCode/fx_hdf_try_algo_backtesting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="309">
               <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -200,10 +196,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-15" />
-    <option name="y" value="23" />
-    <option name="width" value="1082" />
-    <option name="height" value="841" />
+    <option name="x" value="874" />
+    <option name="y" value="26" />
+    <option name="width" value="1382" />
+    <option name="height" value="1413" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -236,6 +232,12 @@
               <item name="AlgoTradingStrat" type="b2602c69:ProjectViewProjectNode" />
               <item name="AlgoTradingStrat" type="462c0819:PsiDirectoryNode" />
               <item name="PData" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlgoTradingStrat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlgoTradingStrat" type="462c0819:PsiDirectoryNode" />
+              <item name="PData" type="462c0819:PsiDirectoryNode" />
+              <item name="Crypto_transit_matrix_" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AlgoTradingStrat" type="b2602c69:ProjectViewProjectNode" />
@@ -481,10 +483,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1015" y="248" width="1382" height="1413" extended-state="0" />
-    <editor active="true" />
+    <frame x="874" y="26" width="1382" height="1413" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26492536" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32761195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772493" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -760,8 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/func_based_crypto_hmmfit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="-12">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#366#1175#0" expanded="false" />
@@ -782,15 +783,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/algo_trade_backtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+        <state relative-caret-position="414">
+          <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/fx_hdf_try_algo_backtesting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
+        <state relative-caret-position="309">
           <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -807,11 +808,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PCode/Generalised_FX_data_hmm_fit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="117" column="84" lean-forward="false" selection-start-line="117" selection-start-column="84" selection-end-line="117" selection-end-column="84" />
+        <state relative-caret-position="184">
+          <caret line="105" column="97" lean-forward="false" selection-start-line="105" selection-start-column="97" selection-end-line="105" selection-end-column="97" />
           <folding>
+            <element signature="e#0#18#0" expanded="true" />
             <element signature="e#366#1175#0" expanded="false" />
-            <element signature="e#1225#2283#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -826,7 +827,7 @@
     <entry file="file://$PROJECT_DIR$/PCode/crypto_hdf_try_algo_backtesting.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
