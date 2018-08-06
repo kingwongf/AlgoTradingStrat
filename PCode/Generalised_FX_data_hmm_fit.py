@@ -134,12 +134,12 @@ gc.enable()
 
 ## run parellel
 def main():
-    states_list = range(2,4)
+    states_list = range(2,9)
     with Pool() as pool:
         # for seq in range(len(running_list)):
         #     pool.starmap(backtesting, zip(states_list, repeat(running_list[seq]),repeat(running_list_label[seq]), repeat(15000)))
         pool.starmap(backtesting,
-                     zip(states_list, repeat(arb_profit_USDGBP_ask), repeat("arb_profit_USDGBP_ask"), repeat(15000)))
+                     zip(states_list, repeat(arb_profit_USDEUR_bid), repeat("arb_profit_USDEUR_bid"), repeat(15000)))
 
 if __name__=="__main__":
     freeze_support()
