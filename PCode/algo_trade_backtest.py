@@ -49,6 +49,7 @@ def main(P, bid, ask):
                 order(True, bid[i], ask[i], long_order, short_order,False, holdings, notional)
 
         elif P[i] < np.mean(P[i:i-10]) - np.std(P[i:i-10])*z_score:
+            print("short")
             shift.append(-1)
             if net_position(long_order, short_order) + \
                     order(False, bid[i], ask[i], long_order, short_order,True, holdings, notional)> - position_limit:

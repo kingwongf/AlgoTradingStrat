@@ -134,8 +134,14 @@ def ret_analysis(net_post_df, cxfx, P_shift):
 
 
         ## confusion matrix
-        # print(len(shift_byprice_backtest(ask)), len(P_shift[label]))
+        # print(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == -1)[0])
+
+        print(len(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == -1)[0]))
+        print(len(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == 0)[0]))
+        print(len(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == 1)[0]))
+
         conf_m = confusion_matrix(shift_byprice_backtest(ask[15000:15000 + 6048]), P_shift[label])
+        print(conf_m)
 
         alpha_beta[label] = [beta, alpha, Sharpe, IR, conf_m]
 
