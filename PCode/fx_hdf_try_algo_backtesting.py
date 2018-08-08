@@ -23,6 +23,7 @@ opt_model = find_opt()      ## list of str(name) of optimal models
 # transit_global =  dict.fromkeys(opt_model, 0)
 transit_global = []
 for name in opt_model:
+    print(name)
     store = pd.HDFStore(name)
     df = pd.read_hdf(store, name[28:-3])    ## drop name of the directory to ".h5"
     store.close()
@@ -42,21 +43,20 @@ Net_pos_global = {}
 shift_global = {}
 for ind_global, transit_m in enumerate(transit_global):
     label = opt_model[ind_global][31:-3]
-    print(label)
     try:
         ticker = label[label.index('USD'):label.index('USD')+6]
     except:
         ticker = label[label.index('EUR'):label.index('EUR')+6]
 
-    ask = fx_data[ticker + '_Close_Ask'][15000+10:15000+6048]
-    bid = fx_data[ticker + '_Close_Bid'][15000+10:15000+6048]
+    ask = fx_data[ticker + '_Close_Ask'][15000:15000+6048]
+    bid = fx_data[ticker + '_Close_Bid'][15000:15000+6048]
 
     ## if xbt: use xbtfx, if xetusd/eur: use cxfx
 
     P_label_list = ['P' + str(i) + str(j) for i in range(0, len(transit_m)) for j in range(0, len(transit_m))]
 
     for ind, P in enumerate(transit_m):
-        Net_pos, shift = main(P=P, bid=bid, ask=ask)
+        Net_pos, shift = main(P=P[:6048], bid=bid, ask=ask)
         Net_pos_global[label + "_" + P_label_list[ind]] = Net_pos
         shift_global[label + "_" + P_label_list[ind]] = shift
 

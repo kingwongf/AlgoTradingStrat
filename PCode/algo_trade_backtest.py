@@ -12,22 +12,40 @@ def net_position(holdings, notional, curr_price):
 
 
 def order(long_short, bid_ind, ask_ind, long_order, short_order,
-          check, holdings, notional, number_of_currency = 0.1):
-    transact = 0.0030
+          check, holdings, notional, cx_fx = False, number_of_currency = 1000):
+    transact = 0
     if long_short == True:
         if check ==True:
-            return (number_of_currency * ask_ind*(1+transact))
+            if cx_fx ==True:
+                return (number_of_currency * ask_ind*(1+transact))
+            else:
+                return (number_of_currency / ask_ind * (1 + transact))
         else:
-            holdings.append(holdings[-1] + number_of_currency)
-            notional.append(notional[-1] - number_of_currency*ask_ind*(1+transact))
-            long_order.append(number_of_currency*ask_ind)
+            if cx_fx == True:
+                holdings.append(holdings[-1] + number_of_currency)
+                notional.append(notional[-1] - number_of_currency*ask_ind*(1+transact))
+                long_order.append(number_of_currency*ask_ind)
+            else:
+                holdings.append(holdings[-1] + number_of_currency)
+                notional.append(notional[-1] - number_of_currency / ask_ind * (1 + transact))
+                long_order.append(number_of_currency * ask_ind)
+
 
     elif check==True:
-        return (-number_of_currency * bid_ind*(1+transact))
+        if cx_fx == True:
+            return (-number_of_currency * bid_ind * (1 + transact))
+        else:
+            return (-number_of_currency / bid_ind * (1 + transact))
+
     else:
-        holdings.append(holdings[-1] - number_of_currency)
-        notional.append(notional[-1] + number_of_currency*bid_ind)
-        short_order.append(-number_of_currency*bid_ind)
+        if cx_fx == True:
+            holdings.append(holdings[-1] - number_of_currency)
+            notional.append(notional[-1] + number_of_currency*bid_ind)
+            short_order.append(-number_of_currency*bid_ind)
+        else:
+            holdings.append(holdings[-1] - number_of_currency)
+            notional.append(notional[-1] + number_of_currency / bid_ind)
+            short_order.append(-number_of_currency / bid_ind)
 
 
 def main(P, bid, ask):

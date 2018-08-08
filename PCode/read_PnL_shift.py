@@ -19,16 +19,16 @@ import numpy as np
 
 ## read price
 
-fx_data = pd.read_excel("../PData/FX_PData.xlsx", header=0, index_col ="Dates")
-xbt_data = pd.read_excel("../PData/XBTUSDEUR.xlsx", header=0, index_col ="Dates")
-cx_data_0208 = pd.read_excel("../PData/Crypto_Full_PData.xlsx", header=0, index_col ="Dates")
-
-
-xbtfx_data = fx_data.join(xbt_data)
-cxfx_data = fx_data.join(cx_data_0208)
-
-xbtfx_data = xbtfx_data.dropna()
-cxfx_data = cxfx_data.dropna()
+# fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
+# xbt_data = pd.read_excel("../PData/XBTUSDEUR.xlsx", header=0, index_col ="Dates")
+# cx_data_0208 = pd.read_excel("../PData/Crypto_Full_PData.xlsx", header=0, index_col ="Dates")
+#
+#
+# xbtfx_data = fx_data.join(xbt_data)
+# cxfx_data = fx_data.join(cx_data_0208)
+#
+# xbtfx_data = xbtfx_data.dropna()
+# cxfx_data = cxfx_data.dropna()
 
 fx_data = pd.read_csv("../PData/FX_PData.csv", header=0, index_col ="Dates")
 
@@ -36,28 +36,45 @@ rf = 0.0146/250
 
 
 ## PnL analysis
-cx_net_post = dd.io.load('../PData/CX_Net_pos_global.h5')
-cx_net_post = pd.DataFrame.from_dict(cx_net_post)
 
-XBTUSD_benchmark = 1000000/xbtfx_data['XBTUSD_Close_Ask'][15000+10]*xbtfx_data['XBTUSD_Close_Ask'][15000+10:15000+6048]
-XETUSD_benchmark = 1000000/cxfx_data['XETUSD_Close_Ask'][15000+10]*cxfx_data['XETUSD_Close_Ask'][15000+10:15000+6048]
+##cxfx
+# cx_net_post = dd.io.load('../PData/CX_Net_pos_global.h5')
+# cx_net_post = pd.DataFrame.from_dict(cx_net_post)
+#
+# XBTUSD_benchmark = 1000000/xbtfx_data['XBTUSD_Close_Ask'][15000+10]*xbtfx_data['XBTUSD_Close_Ask'][15000+10:15000+6048]
+# XETUSD_benchmark = 1000000/cxfx_data['XETUSD_Close_Ask'][15000+10]*cxfx_data['XETUSD_Close_Ask'][15000+10:15000+6048]
 
-# py.iplot([{
-#     'x': cx_net_post.index,
-#     'y': cx_net_post[col],
-#     'name': col} for col in cx_net_post.columns], filename='PnL')
-print(len(XBTUSD_benchmark))
+# plt.plot(cx_net_post, alpha=0.7)
+# plt.plot(np.arange(len(XBTUSD_benchmark)), XBTUSD_benchmark, color='red')
+# plt.plot(np.arange(len(XETUSD_benchmark)), XETUSD_benchmark, color='green')
+# plt.ylabel('Net Position in USD')
+# plt.show()
 
-plt.plot(cx_net_post, alpha=0.7)
-plt.plot(np.arange(len(XBTUSD_benchmark)), XBTUSD_benchmark, color='red')
-plt.plot(np.arange(len(XETUSD_benchmark)), XETUSD_benchmark, color='green')
+
+##fx
+
+fx_net_post = dd.io.load('../PData/FX_Net_pos_global.h5')
+fx_net_post = pd.DataFrame.from_dict(fx_net_post)
+
+
+USDEUR_benchmark = 1000000/fx_data['USDEUR_Close_Ask'][15000+10]*fx_data['USDEUR_Close_Ask'][15000+10:15000+6048]
+USDGBP_benchmark = 1000000/fx_data['USDGBP_Close_Ask'][15000+10]*fx_data['USDGBP_Close_Ask'][15000+10:15000+6048]
+USDJPY_benchmark = 1000000/fx_data['USDJPY_Close_Ask'][15000+10]*fx_data['USDJPY_Close_Ask'][15000+10:15000+6048]
+
+
+plt.plot(fx_net_post, alpha=0.5)
+plt.plot(np.arange(len(USDEUR_benchmark)), USDEUR_benchmark, color='red',linestyle='-.')
+plt.plot(np.arange(len(USDGBP_benchmark)), USDGBP_benchmark, color='green',linestyle='-.')
+plt.plot(np.arange(len(USDJPY_benchmark)), USDJPY_benchmark, color='blue',linestyle='-.')
 plt.ylabel('Net Position in USD')
 plt.show()
 
 
+
 ## shift analysis
 cx_shift = dd.io.load('../PData/CX_Shift_global.h5')
-print(len(cx_shift))
+fx_shift = dd.io.load('../PData/FX_Shift_global.h5')
+
 
 
 def shift_byprice_backtest(price_series):
@@ -98,14 +115,15 @@ def ret_analysis(net_post_df, cxfx, P_shift):
             if label.find("XET") > 0:
                 ask = cxfx_data[ticker + '_Close_Ask']
                 # bid = cxfx_data[ticker + '_Close_Bid'][15000+11:15000 + 6048]
-            elif cxfx==False:
-                try:
-                    ticker = label[label.index('USD'):label.index('USD') + 6]
-                    ask = fx_data[ticker + '_Close_Ask']
-                except:
-                    ticker = label[label.index('EUR'):label.index('EUR') + 6]
-                    ask = fx_data[ticker + '_Close_Ask']
-                    # bid = fx_data[ticker + '_Close_Bid'][15000 + 10:15000 + 6048]
+        elif cxfx==False:
+            try:
+                ticker = label[label.index('USD'):label.index('USD') + 6]
+                ask = fx_data[ticker + '_Close_Ask']
+
+            except:
+                ticker = label[label.index('EUR'):label.index('EUR') + 6]
+                ask = fx_data[ticker + '_Close_Ask']
+                # bid = fx_data[ticker + '_Close_Bid'][15000 + 10:15000 + 6048]
 
 
         # print(len(np.diff(ask)), len(p_ret_df[label]))
@@ -134,14 +152,14 @@ def ret_analysis(net_post_df, cxfx, P_shift):
 
 
         ## confusion matrix
-        # print(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == -1)[0])
+        print(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == -1)[0])
 
         print(len(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == -1)[0]))
         print(len(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == 0)[0]))
         print(len(np.where(np.array(shift_byprice_backtest(ask[15000:15000 + 6048])) == 1)[0]))
 
         conf_m = confusion_matrix(shift_byprice_backtest(ask[15000:15000 + 6048]), P_shift[label])
-        print(conf_m)
+        # print(conf_m)
 
         alpha_beta[label] = [beta, alpha, Sharpe, IR, conf_m]
 
@@ -163,7 +181,8 @@ def ret_analysis(net_post_df, cxfx, P_shift):
 
 # print(list(cx_net_post.keys()))
 
-cx_alpha_beta = ret_analysis(cx_net_post, True,cx_shift)
+# cx_alpha_beta = ret_analysis(cx_net_post, True,cx_shift)
+fx_alpha_beta = ret_analysis(fx_net_post, False,fx_shift)
 
 # print(cx_alpha_beta)
 #
@@ -171,4 +190,6 @@ cx_alpha_beta = ret_analysis(cx_net_post, True,cx_shift)
 # T_cx.sort_values([6037],  ascending=False)
 
 
-print(cx_alpha_beta.sort_values(by=[1,2,3],ascending=[False, False, False]).head())
+# print(cx_alpha_beta.sort_values(by=[1,2,3],ascending=[False, False, False]).head())
+
+print(fx_alpha_beta.sort_values(by=[1,2,3],ascending=[False, False, False]).head())

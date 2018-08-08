@@ -7,3 +7,6 @@ PData/.DS_Store
 *.xml
 *.xml
 *.xml
+PCode/__pycache__/algo_trade_backtest.cpython-36.pyc
+PCode/__pycache__/for_fx_find_opt_model.cpython-36.pyc
+PCode/__pycache__/for_xbtcx_find_opt_model.cpython-36.pyc
